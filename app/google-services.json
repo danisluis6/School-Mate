@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "370979179846",
+    "firebase_url": "https://versionone-ec404.firebaseio.com",
+    "project_id": "versionone-ec404",
+    "storage_bucket": "versionone-ec404.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:370979179846:android:5f26db1656fc79f5",
+        "android_client_info": {
+          "package_name": "com.example.enclaveit.schoolmateapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "370979179846-tpemlg03qjt3be5grt4l0nt6rv4lo72o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFGqILjHTguL3AzKw-MngljoTQTrtaOCU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

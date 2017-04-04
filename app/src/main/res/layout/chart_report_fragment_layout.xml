@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/barChart"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.9"
+        android:layout_margin="10dp" />
+    <!--Layout for color Evaluation-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:weightSum="1"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.33"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:paddingRight="10dp"
+                android:textSize="10sp"
+                android:gravity="center_vertical"
+                android:layout_height="wrap_content"
+                android:text=" Excellent"
+                android:drawableLeft="@drawable/item_excellent"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:layout_weight="0.5"
+                android:gravity="center_vertical"
+                android:text=" Good"
+                android:drawableLeft="@drawable/item_good"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.33"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:textSize="10sp"
+                android:gravity="center_vertical"
+                android:paddingRight="10dp"
+                android:layout_height="wrap_content"
+                android:text=" Normal"
+                android:drawableLeft="@drawable/item_normal"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:layout_weight="0.5"
+                android:gravity="center_vertical"
+                android:text=" Bad"
+                android:drawableLeft="@drawable/item_bad"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:textSize="10sp"
+            android:layout_height="0dp"
+            android:layout_weight="0.33"
+            android:gravity="center_vertical"
+            android:text=" Need Improve"
+            android:drawableLeft="@drawable/item_improve"/>
+    </LinearLayout>
+
+</LinearLayout>

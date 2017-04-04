@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_annouce"
+    tools:context=".activities.ActivityReport">
+    <!--https://inducesmile.com/android/android-creating-tab-layout-with-tabhost-and-tabwigdet-or-with-fragmenttabhost-and-fragment/-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/timetableAction"
+        android:background="@color/bg_Action"
+        android:layout_marginBottom="3dp"
+        android:paddingRight="5dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.4"
+            android:layout_height="wrap_content"
+            android:text="Choose Semester:"
+            android:textStyle="bold"
+            android:layout_margin="5dp"/>
+        <!--Choose Semester-->
+        <Spinner
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="match_parent"
+            android:spinnerMode="dialog"
+            android:id="@+id/reportChooseSemester"></Spinner>
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_weight="0.08"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/chart_64"
+            android:background="@color/bg_none"
+            android:id="@+id/imgBtnViewTimeTable"/>
+    </LinearLayout>
+
+    <android.support.v4.app.FragmentTabHost
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@android:id/tabhost">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+            <TabWidget
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@android:id/tabs"></TabWidget>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:id="@android:id/tabcontent"></FrameLayout>
+        </LinearLayout>
+    </android.support.v4.app.FragmentTabHost>
+
+</LinearLayout>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.enclaveit.schoolmateapp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.provider.gsf.permission.READ_GSERVICES" />
+
+    <!-- Used to get Location -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:name="android.support.multidex.MultiDexApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity android:name=".activities.ActivityLogin">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.ActivityBusTracking" />
+        <activity android:name=".libraries.DemoWeekView" />
+        <activity android:name=".activities.ActivityTimeTable" />
+        <activity android:name=".activities.ActivityReport" />
+        <activity
+            android:name=".activities.ActivityHome"
+            android:theme="@style/AppTheme.Main" />
+        <activity android:name=".activities.ActivityAnnoucement" />
+        <activity android:name=".activities.ActivityProfile" />
+        <activity android:name=".activities.ActivityDemo" />
+
+        <!-- Google API key -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyB2OY39N-Ry1Anogr7VLO4r5LdCgppN5rE" />
+
+        <activity android:name=".activities.ActivityChat"></activity>
+
+        <!-- Firebase Notifications -->
+        <service android:name=".service.MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <service android:name=".service.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <!-- ./Firebase Notifications -->
+    </application>
+
+</manifest>

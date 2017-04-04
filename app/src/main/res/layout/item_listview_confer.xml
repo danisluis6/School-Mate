@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_horizontal_margin"
+    android:orientation="vertical">
+    <ImageView
+        android:id="@+id/icon_fee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/anouce_icon_confer"/>
+    <RelativeLayout
+        android:id="@+id/middle"
+        android:layout_toRightOf="@id/icon_fee"
+        android:layout_marginRight="22dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/title"
+            android:text="Tuổi trẻ Trung cấp Dược với biển đảo quê hương"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:lines="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="Nhằm khơi dậy niềm tự hào dân tộc, tự hào về truyền thống 84 năm xây dựng, cống hiến và trưởng thành của Đoàn TNCS Hồ Chí Minh trong mỗi cán bộ, đoàn viên, thanh niên."
+            android:lines="2"
+            android:id="@+id/description"
+            android:layout_below="@id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <CheckBox
+        android:id="@+id/chk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"/>
+</RelativeLayout>

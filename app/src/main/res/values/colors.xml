@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="event_color_01">#59dbe0</color>
+    <color name="event_color_02">#f57f68</color>
+    <color name="event_color_03">#87d288</color>
+    <color name="event_color_04">#f8b552</color>
+    <color name="colorWhite">#FFFFFF</color>
+
+    <color name="name_of_Student">#ef6c00</color>
+    <color name="name_of_Feature">#0288d1</color>
+    <color name="bg_Action">#bbdefb</color>
+    <color name="tab_Selected">#b3e5fc</color>
+    <color name="tab_UnSelected">#ffffff</color>
+    <color name="row_1">#f5f5f5</color>
+    <color name="row_2">#eeeeee</color>
+
+    <!--Color for Subject-->
+    <color name="bg_Mathematics">#ffebeb</color>
+    <color name="bg_Science">#df5252</color>
+    <color name="bg_History">#faa462</color>
+    <color name="bg_Music">#f7ee8d</color>
+    <color name="bg_Art">#a6d478</color>
+    <color name="bg_Assembly">#62de6b</color>
+    <color name="bg_English">#68e9be</color>
+    <color name="bg_Geography">#3eb3b1</color>
+    <color name="bg_Physics">#4f88ea</color>
+    <color name="bg_Chemistry">#b173ea</color>
+    <color name="bg_Biology">#ff67d5</color>
+    <color name="bg_Civic_Education">#b0b6ba</color>
+    <color name="bg_Classroom_Activities">#e7ed2b</color>
+    <color name="bg_Physical_Education">#e3fdfb</color>
+    <color name="bg_Informatics">#06b457</color>
+    <color name="bg_Literature">#5053ff</color>
+    <color name="bg_vacation">#ff3936</color>
+    <color name="bg_lunch">#dfdfdf</color>
+    <color name="bg_none">#00ffffff</color>
+    <color name="bg_each_day">#ffffff</color>
+
+
+    <!--Background Transparent-->
+    <color name="bg_blue_trans">#c82196f3</color>
+    <color name="bg_red_trans">#c8f44336</color>
+    <color name="bg_yellow_trans">#c8ffeb3b</color>
+    <color name="bg_green_trans">#c84caf50</color>
+    <color name="bg_pink_trans">#c8e91e63</color>
+    <color name="bg_orange_trans">#c8fb8c00</color>
+    <color name="bg_violet_trans">#c8673ab7</color>
+
+    <!--Color for evaluation-->
+    <color name="excellent">#00e676</color>
+    <color name="good">#1976d2</color>
+    <color name="normal">#00897b</color>
+    <color name="improve">#ffa000</color>
+    <color name="bad">#f4511e</color>
+
+    <!-- Color set attribute transparent for toolbar, but also show content from toolbar -->
+    <color name="black_alpha_40">#66000000</color>
+
+
+    <color name="actionbar_bg">#0099CC</color>
+</resources>

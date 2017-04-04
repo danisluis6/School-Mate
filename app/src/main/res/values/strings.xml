@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">School Mate</string>
+    <string name="menu">Menu</string>
+    <string name="drawer_open">Drawer Open</string>
+    <string name="drawer_close">Drawer Close</string>
+
+    <!-- Navigation Drawer menu labels -->
+    <string name="nav_home"><b>Home</b></string>
+    <string name="nav_photos"><b>Profile</b></string>
+    <string name="nav_movies"><b>Children</b></string>
+    <string name="nav_notifications"><b>Notifications</b></string>
+    <string name="nav_settings"><b>Settings</b></string>
+    <string name="nav_about_us"><b>About Us</b></string>
+
+    <!-- Toolbar titles when navigation menu item is selected -->
+    <string-array name="nav_item_activity_titles">
+        <item>SchoolMateApp</item>
+        <item>Profile</item>
+        <item>Children</item>
+        <item>Notifications</item>
+        <item>Settings</item>
+    </string-array>
+
+    <string name="activity_title_about_us">About Us</string>
+    <string name="activity_title_privacy_policy"><b>Privacy Policy</b></string>
+    <string name="action_clear_all">Clear All</string>
+    <string name="action_logout">Logout</string>
+    <string name="action_mark_all_read">Mark All as Read</string>
+    <string name="privacy_policy"><b>Privacy Policy</b></string>
+
+    <!--Title for main Features-->
+    <string name="main">SchoolMateApp</string>
+    <string name="timetable">TIMETABLE</string>
+    <string name="progress_report">PROGRESS REPORT</string>
+    <string name="bus_tracking">BUS TRACKING</string>
+    <string name="announcement">ANNOUNCEMENT</string>
+    <string name="homework">HOMEWORK</string>
+
+    <!-- Login App Android -->
+    <string name="login_email">Email</string>
+    <string name="login_pass">Password</string>
+    <string name="login_rememberme">Forgot Password?</string>
+    <string name="login_btn">Login</string>
+    <string name="mainHomeWork">Home Work</string>
+    <string name="mainTimeTable">Time Table</string>
+    <string name="mainBusTracking">Bus Tracking</string>
+    <string name="mainChatting">Chatting</string>
+    <string name="mainAnnoucement">Annoucement</string>
+    <string name="mainReport">Report</string>
+    <string name="profile_title">Nguyen Van Vuong</string>
+
+    <!--PubNub key-->
+    <string name="publish_key">pub-c-9e460bc4-c633-4aef-a0d8-a9fea8d00d96</string>
+    <string name="subscribe_key">sub-c-4ab8acfa-f9c8-11e6-a154-0619f8945a4f</string>
+    <string name="auth_key">Auth-123</string>
+
+    <!-- Address to get SharePreference -->
+    <string name="FCM_PREF">com.example.enclaveit.app.fcm_pref</string>
+    <string name="FCM_TOKEN">com.example.enclaveit.app.fcm_token</string>
+</resources>

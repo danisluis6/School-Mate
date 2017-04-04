@@ -1,0 +1,53 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.1"
+    defaultConfig {
+        applicationId "com.example.enclaveit.schoolmateapp"
+        minSdkVersion 18
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    /*Using GMap*/
+    /*Using Some Libraries for create Timetable*/
+    //Using Week-View
+    /*For using Bar chart*/
+    /** For using circle picture **/
+
+
+    compile 'com.android.support:appcompat-v7:25.0.1'
+    compile 'com.android.support:design:25.0.1'
+    compile 'com.android.support:multidex:1.0.0'
+    compile 'com.google.android.gms:play-services:10.0.1'
+    compile 'com.github.alamkanak:android-week-view:1.2.6'
+    compile 'com.github.PhilJay:MPAndroidChart:v2.1.6'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+
+    /*PubNub for realtime*/
+    compile group: 'com.pubnub', name: 'pubnub-gson', version: '4.5.0'
+    /*Using Http Connection to get data*/
+    compile 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
+    /** Using receive announcement from client **/
+    compile 'com.google.firebase:firebase-messaging:9.6.0'
+}
+
+apply plugin: 'com.google.gms.google-services'

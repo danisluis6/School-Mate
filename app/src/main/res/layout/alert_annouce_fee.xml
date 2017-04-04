@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:background="#FFFFFF">
+    <TextView
+        android:id="@+id/title"
+        android:text="Thông báo học phí"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:textColor="#58A4C4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </TextView>
+    <TextView
+        android:id="@+id/description"
+        android:text="Sắp tới nhà trường tổ chức thu học phí đợt I: 2016-2017"
+        android:textSize="16dp"
+        android:padding="10dp"
+        android:lineSpacingExtra="12dp"
+        android:textColor="#58A4C4"
+        android:layout_below="@id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:layout_below="@id/description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/cancle"
+            android:textColor="#58A4C4"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:text="Cancle"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"/>
+        <Button
+            android:id="@+id/ok"
+            android:textColor="#58A4C4"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:text="OK"
+            android:layout_toLeftOf="@id/cancle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"/>
+    </RelativeLayout>
+</RelativeLayout>
