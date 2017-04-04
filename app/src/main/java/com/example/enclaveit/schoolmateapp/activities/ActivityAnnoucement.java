@@ -1,58 +1,43 @@
 package com.example.enclaveit.schoolmateapp.activities;
 
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.example.enclaveit.schoolmateapp.asynctasks.GetAnnouncements;
+import com.example.enclaveit.schoolmateapp.asynctasks.AsyncTaskAnnouncement;
 import com.example.enclaveit.schoolmateapp.bean.Announcement;
+import com.example.enclaveit.schoolmateapp.config.ConfigURL;
 import com.example.enclaveit.schoolmateapp.fragments.FragmentActivity;
 import com.example.enclaveit.schoolmateapp.fragments.FragmentConference;
 import com.example.enclaveit.schoolmateapp.fragments.FragmentExamination;
 import com.example.enclaveit.schoolmateapp.fragments.FragmentFee;
 import com.example.enclaveit.schoolmateapp.R;
+import com.example.enclaveit.schoolmateapp.libraries.ViewPagerAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityAnnoucement extends AppCompatActivity implements GetAnnouncements.AsyncResponse{
+public class ActivityAnnoucement extends AppCompatActivity implements AsyncTaskAnnouncement.AsyncResponse{
 
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
-    private GetAnnouncements announcementAsyncTask;
+    private AsyncTaskAnnouncement announcementAsyncTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_annoucement);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Window w = getWindow();
-            w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        }
-
         initComponents();
-
-
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-
-
     }
 
     private void initComponents() {
@@ -66,57 +51,51 @@ public class ActivityAnnoucement extends AppCompatActivity implements GetAnnounc
         viewPager = (ViewPager) findViewById(R.id.viewpager);
 
         /** AsyncTask To get Json from website */
-        announcementAsyncTask = new GetAnnouncements(ActivityAnnoucement.this);
-        announcementAsyncTask.execute("https://lorenceuniversity.000webhostapp.com/");
+        announcementAsyncTask = new AsyncTaskAnnouncement(ActivityAnnoucement.this);
+        announcementAsyncTask.execute(ConfigURL.urlAnnouncements);
 
-        /** **/
+        /** Initialize object for interface AsyncTask  **/
         announcementAsyncTask.delegate = this;
+
+        /** Running ViewPager **/
+        setupViewPager(viewPager);
     }
 
+    /**
+     * Loading libraries.ViewPagerAdapter
+     * ArrayList<String>
+     * @param viewPager
+     */
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new FragmentFee(), "Học Phí");
-        adapter.addFragment(new FragmentExamination(), "Thi Cử");
-        adapter.addFragment(new FragmentConference(), "Họp Hành");
-        adapter.addFragment(new FragmentActivity(), "Hoạt Động");
+        String[] typeofAnnouncements = getResources().getStringArray(R.array.typeofannouncements);
+        adapter.addFragment(new FragmentFee(),typeofAnnouncements[0]);
+        adapter.addFragment(new FragmentExamination(),typeofAnnouncements[1]);
+        adapter.addFragment(new FragmentConference(),typeofAnnouncements[2]);
+        adapter.addFragment(new FragmentActivity(),typeofAnnouncements[3]);
         viewPager.setAdapter(adapter);
     }
 
     @Override
     public void processFinish(List<Announcement> output) {
-        Log.d("TAG","Announcements: "+output.size());
+        Log.d("TAG","Announcement Title: "+output.get(0).getAnnouncementTitle());
     }
 
-
-    private class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
-
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
-        }
+    /** Load menu of Toolbar **/
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_anoucement, menu);
+        return true;
     }
 
+    /** Return ActivityHome **/
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    /** Check permission for Android with version >= 6.0 **/
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
@@ -128,17 +107,5 @@ public class ActivityAnnoucement extends AppCompatActivity implements GetAnnounc
                 return;
             }
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_anoucement, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
     }
 }
