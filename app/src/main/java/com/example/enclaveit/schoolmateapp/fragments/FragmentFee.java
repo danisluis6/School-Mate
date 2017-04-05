@@ -1,8 +1,11 @@
 package com.example.enclaveit.schoolmateapp.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.enclaveit.schoolmateapp.R;
-import com.example.enclaveit.schoolmateapp.activities.ActivityAnnoucement;
+import com.example.enclaveit.schoolmateapp.activities.ActivityAnnouncement;
 import com.example.enclaveit.schoolmateapp.adapter.AdapterAnnounceFee;
 import com.example.enclaveit.schoolmateapp.alert.AlertDialogFee;
 import com.example.enclaveit.schoolmateapp.bean.Announcement;
@@ -25,18 +28,22 @@ import java.util.List;
 public class FragmentFee extends Fragment{
 
     private ListView listOfFee;
-    private List<Announcement> listItems = new ArrayList<>();
+    private List<Announcement> arrayAnnouncementSchoolFees = new ArrayList<>();
 
     private AdapterAnnounceFee adapterAnnouncement;
-    private ActivityAnnoucement mainActivity;
+    private ActivityAnnouncement mainActivity;
     private String TAG = FragmentFee.this.getTag();
+
+    public FragmentFee(List<Announcement> agreeschoolfee) {
+        this.arrayAnnouncementSchoolFees = agreeschoolfee;
+    }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        if(context instanceof ActivityAnnoucement){
-            this.mainActivity = (ActivityAnnoucement)context;
+        if(context instanceof ActivityAnnouncement){
+            this.mainActivity = (ActivityAnnouncement)context;
         }
     }
 
@@ -46,33 +53,26 @@ public class FragmentFee extends Fragment{
         View view = inflater.inflate(R.layout.fragment_fee, container, false);
         listOfFee = (ListView)view.findViewById(R.id.listOfFee);
 
-//        listItems = new ArrayList<>();
-//        listItems.add(new Announcement("Thông báo học phí kỳ 2: 2016-2017","Nhà trường triển khai thu học phí kỳ 2 năm học 2017 - 2018"));;
-//        listItems.add(new Announcement("Thông báo học phí kỳ 2: 2016-2017","Nhà trường triển khai thu học phí kỳ 2 năm học 2017 - 2018"));;
-//        listItems.add(new Announcement("Thông báo học phí kỳ 2: 2016-2017","Nhà trường triển khai thu học phí kỳ 2 năm học 2017 - 2018"));;
-//        listItems.add(new Announcement("Thông báo học phí kỳ 2: 2016-2017","Nhà trường triển khai thu học phí kỳ 2 năm học 2017 - 2018"));;
-//        listItems.add(new Announcement("Thông báo học phí kỳ 2: 2016-2017","Nhà trường triển khai thu học phí kỳ 2 năm học 2017 - 2018"));;
-//        listItems.add(new Announcement("Thông báo học phí kỳ 2: 2016-2017","Nhà trường triển khai thu học phí kỳ 2 năm học 2017 - 2018"));;
-//        listItems.add(new Announcement("Thông báo học phí kỳ 2: 2016-2017","Nhà trường triển khai thu học phí kỳ 2 năm học 2017 - 2018"));;
-//        listItems.add(new Announcement("Thông báo học phí kỳ 2: 2016-2017","Nhà trường triển khai thu học phí kỳ 2 năm học 2017 - 2018"));;
-//        listItems.add(new Announcement("Thông báo học phí kỳ 2: 2016-2017","Nhà trường triển khai thu học phí kỳ 2 năm học 2017 - 2018"));;
-//        listItems.add(new Announcement("Thông báo học phí kỳ 2: 2016-2017","Nhà trường triển khai thu học phí kỳ 2 năm học 2017 - 2018"));;
-//        listItems.add(new Announcement("Thông báo học phí kỳ 2: 2016-2017","Nhà trường triển khai thu học phí kỳ 2 năm học 2017 - 2018"));;
-//        listItems.add(new Announcement("Thông báo học phí kỳ 2: 2016-2017","Nhà trường triển khai thu học phí kỳ 2 năm học 2017 - 2018"));;
-//        listItems.add(new Announcement("Thông báo học phí kỳ 2: 2016-2017","Nhà trường triển khai thu học phí kỳ 2 năm học 2017 - 2018"));;
-//        listItems.add(new Announcement("Thông báo học phí kỳ 2: 2016-2017","Nhà trường triển khai thu học phí kỳ 2 năm học 2017 - 2018"));;
+//        adapterAnnouncement = new AdapterAnnounceFee(mainActivity,arrayAnnouncementSchoolFees);
+//        listOfFee.setAdapter(adapterAnnouncement);
 
-        adapterAnnouncement = new AdapterAnnounceFee(mainActivity,listItems);
-        listOfFee.setAdapter(adapterAnnouncement);
+        setFragment(new FragmentFeeHome(arrayAnnouncementSchoolFees,adapterAnnouncement,listOfFee));
 
         // Set event of ListView
         listOfFee.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Announcement announcement = (Announcement) parent.getItemAtPosition(position);
-                AlertDialogFee.onCreateDialog(mainActivity,announcement.getAnnouncementTitle(),"Your messages",mainActivity).show();
+                AlertDialogFee.onCreateDialog(mainActivity,announcement).show();
+                setFragment(new FragmentConference());
             }
         });
         return view;
+    }
+
+    protected void setFragment(Fragment fragment) {
+        FragmentTransaction t = mainActivity.getSupportFragmentManager().beginTransaction();
+        t.replace(R.id.fragment_container, fragment);
+        t.commit();
     }
 }

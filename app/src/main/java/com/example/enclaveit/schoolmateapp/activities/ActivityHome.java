@@ -64,7 +64,7 @@ public class ActivityHome extends ActivityBase{
                     startActivity(new Intent(ActivityHome.this,ActivityTimeTable.class));
                     break;
                 case R.drawable.main_announcement:
-                    startActivity(new Intent(ActivityHome.this,ActivityAnnoucement.class));
+                    startActivity(new Intent(ActivityHome.this,ActivityAnnouncement.class));
                     break;
                 case R.drawable.main_bustracking:
                     startActivity(new Intent(ActivityHome.this,ActivityBusTracking.class));
@@ -73,7 +73,7 @@ public class ActivityHome extends ActivityBase{
                     startActivity(new Intent(ActivityHome.this,ActivityChat.class));
                     break;
                 case R.drawable.main_homework:
-                    startActivity(new Intent(ActivityHome.this,ActivityAnnoucement.class));
+                    startActivity(new Intent(ActivityHome.this,ActivityAnnouncement.class));
                     break;
                 case R.drawable.main_report:
                     startActivity(new Intent(ActivityHome.this,ActivityReport.class));

@@ -13,21 +13,25 @@ import android.widget.Toast;
 
 import com.example.enclaveit.schoolmateapp.asynctasks.AsyncTaskAnnouncement;
 import com.example.enclaveit.schoolmateapp.bean.Announcement;
+import com.example.enclaveit.schoolmateapp.config.ConfigLog;
 import com.example.enclaveit.schoolmateapp.config.ConfigURL;
 import com.example.enclaveit.schoolmateapp.fragments.FragmentActivity;
 import com.example.enclaveit.schoolmateapp.fragments.FragmentConference;
 import com.example.enclaveit.schoolmateapp.fragments.FragmentExamination;
 import com.example.enclaveit.schoolmateapp.fragments.FragmentFee;
 import com.example.enclaveit.schoolmateapp.R;
+import com.example.enclaveit.schoolmateapp.libraries.AnnouncementUtils;
 import com.example.enclaveit.schoolmateapp.libraries.ViewPagerAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityAnnoucement extends AppCompatActivity implements AsyncTaskAnnouncement.AsyncResponse{
+public class ActivityAnnouncement extends AppCompatActivity implements AsyncTaskAnnouncement.AsyncResponse{
 
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private AnnouncementUtils announcementUtils;
 
     private AsyncTaskAnnouncement announcementAsyncTask;
 
@@ -51,34 +55,40 @@ public class ActivityAnnoucement extends AppCompatActivity implements AsyncTaskA
         viewPager = (ViewPager) findViewById(R.id.viewpager);
 
         /** AsyncTask To get Json from website */
-        announcementAsyncTask = new AsyncTaskAnnouncement(ActivityAnnoucement.this);
+        announcementAsyncTask = new AsyncTaskAnnouncement(ActivityAnnouncement.this);
         announcementAsyncTask.execute(ConfigURL.urlAnnouncements);
 
         /** Initialize object for interface AsyncTask  **/
         announcementAsyncTask.delegate = this;
+    }
 
-        /** Running ViewPager **/
-        setupViewPager(viewPager);
+    @Override
+    public void processFinish(List<Announcement> output) {
+        try{
+            /** Initialize object announcement */
+            announcementUtils = new AnnouncementUtils(ActivityAnnouncement.this,output);
+
+            /** Running ViewPager **/
+            setupViewPager(viewPager,announcementUtils);
+        }catch (Exception ex){
+            Log.d("ActivityAnnouncement", ConfigLog.ErrorGetRootListAnnouncement);
+        }
     }
 
     /**
      * Loading libraries.ViewPagerAdapter
      * ArrayList<String>
      * @param viewPager
+     * @param announcementUtils
      */
-    private void setupViewPager(ViewPager viewPager) {
+    private void setupViewPager(ViewPager viewPager, AnnouncementUtils announcementUtils) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         String[] typeofAnnouncements = getResources().getStringArray(R.array.typeofannouncements);
-        adapter.addFragment(new FragmentFee(),typeofAnnouncements[0]);
+        adapter.addFragment(new FragmentFee(announcementUtils.getArrayAnnouncement("agreeschoolfee")),typeofAnnouncements[0]);
         adapter.addFragment(new FragmentExamination(),typeofAnnouncements[1]);
         adapter.addFragment(new FragmentConference(),typeofAnnouncements[2]);
         adapter.addFragment(new FragmentActivity(),typeofAnnouncements[3]);
         viewPager.setAdapter(adapter);
-    }
-
-    @Override
-    public void processFinish(List<Announcement> output) {
-        Log.d("TAG","Announcement Title: "+output.get(0).getAnnouncementTitle());
     }
 
     /** Load menu of Toolbar **/
@@ -102,7 +112,7 @@ public class ActivityAnnoucement extends AppCompatActivity implements AsyncTaskA
             case 1: {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 } else {
-                    Toast.makeText(ActivityAnnoucement.this, "Permission denied on this device!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ActivityAnnouncement.this, "Permission denied on this device!", Toast.LENGTH_SHORT).show();
                 }
                 return;
             }

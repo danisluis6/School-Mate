@@ -6,4 +6,5 @@ package com.example.enclaveit.schoolmateapp.config;
 
 public class ConfigLog {
     public static final String ErrorGetJSON = "Load JSON data from server fail!!!";
+    public static final String ErrorGetRootListAnnouncement = "Load ArrayList<Announcement> from ActivityAnnouncement fail!!!";
 }

@@ -4,7 +4,7 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.enclaveit.schoolmateapp.activities.ActivityAnnoucement;
+import com.example.enclaveit.schoolmateapp.activities.ActivityAnnouncement;
 import com.example.enclaveit.schoolmateapp.bean.Announcement;
 import com.example.enclaveit.schoolmateapp.config.ConfigLog;
 
@@ -32,7 +32,7 @@ import java.util.List;
 public class AsyncTaskAnnouncement extends AsyncTask<String, Void, String>{
 
     private ProgressDialog pDialog;
-    private ActivityAnnoucement context;
+    private ActivityAnnouncement context;
     private HttpGet httpGet ;
     private HttpClient client = new DefaultHttpClient();
     private HttpResponse response;
@@ -49,7 +49,7 @@ public class AsyncTaskAnnouncement extends AsyncTask<String, Void, String>{
 
     public AsyncResponse delegate = null;
 
-    public AsyncTaskAnnouncement(ActivityAnnoucement context){
+    public AsyncTaskAnnouncement(ActivityAnnouncement context){
         this.context = context;
     }
 
