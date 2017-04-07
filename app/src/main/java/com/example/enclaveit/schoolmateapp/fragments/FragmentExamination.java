@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 
 import com.example.enclaveit.schoolmateapp.R;
-import com.example.enclaveit.schoolmateapp.activities.ActivityAnnoucement;
+import com.example.enclaveit.schoolmateapp.activities.ActivityAnnouncement;
 import com.example.enclaveit.schoolmateapp.adapter.AdapterAnnounceTest;
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ import java.util.List;
 
 public class FragmentExamination extends Fragment {
 
-    private ActivityAnnoucement mainActivity;
+    private ActivityAnnouncement mainActivity;
     private ExpandableListView listOfTest;
 
     private AdapterAnnounceTest adapter;
@@ -33,8 +33,8 @@ public class FragmentExamination extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        if(context instanceof ActivityAnnoucement){
-            this.mainActivity = (ActivityAnnoucement)context;
+        if(context instanceof ActivityAnnouncement){
+            this.mainActivity = (ActivityAnnouncement)context;
         }
     }
 
