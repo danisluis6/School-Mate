@@ -1,10 +1,10 @@
 package com.example.enclaveit.schoolmateapp.libraries;
 
-import android.content.Context;
-import android.util.Log;
-
 import com.example.enclaveit.schoolmateapp.activities.ActivityAnnouncement;
+import com.example.enclaveit.schoolmateapp.asynctasks.JSONSubject;
 import com.example.enclaveit.schoolmateapp.bean.Announcement;
+import com.example.enclaveit.schoolmateapp.bean.Subject;
+import com.example.enclaveit.schoolmateapp.config.ConfigURL;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,15 +13,19 @@ import java.util.List;
  * Created by vuongluis on 4/4/17.
  */
 
-public class AnnouncementUtils {
+public class AnnouncementUtils implements JSONSubject.AsyncResponse{
 
     private List<Announcement> arrayAnnouncement = new ArrayList<>();
     private ActivityAnnouncement context;
-    private static final String TAG = AnnouncementUtils.class.getSimpleName();
+    private JSONSubject jsonSubject;
 
     public AnnouncementUtils(ActivityAnnouncement context, List<Announcement> arrayAnnouncement){
         this.context = context;
         this.arrayAnnouncement = arrayAnnouncement;
+
+        jsonSubject = new JSONSubject(this.context);
+        jsonSubject.execute(ConfigURL.urlSubjects);
+        jsonSubject.delegateSubject = this;
     }
 
     /** Analysis arrayAnnouncement **/
@@ -112,7 +116,7 @@ public class AnnouncementUtils {
         return result;
     }
 
-    public void showArrayListNotification(){
-
+    @Override
+    public void getListSubject(List<Subject> output) {
     }
 }

@@ -8,15 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
-import android.widget.Toast;
 
 import com.example.enclaveit.schoolmateapp.R;
 import com.example.enclaveit.schoolmateapp.activities.ActivityAnnouncement;
 import com.example.enclaveit.schoolmateapp.adapter.AdapterAnnounceTest;
-import com.example.enclaveit.schoolmateapp.asynctasks.JSONSubject;
+import com.example.enclaveit.schoolmateapp.bean.Announcement;
 import com.example.enclaveit.schoolmateapp.bean.Subject;
-import com.example.enclaveit.schoolmateapp.config.ConfigURL;
-import com.example.enclaveit.schoolmateapp.libraries.AnnouncementMethods;
+import com.example.enclaveit.schoolmateapp.libraries.AnnouncementUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,16 +24,16 @@ import java.util.List;
  * Created by enclaveit on 02/03/2017.
  */
 
-public class FragmentExamination extends Fragment implements JSONSubject.AsyncResponse{
+public class FragmentExamination extends Fragment{
 
     private ActivityAnnouncement mainActivity;
     private ExpandableListView listOfExam;
-    private AnnouncementMethods announcementMethods;
+    private AnnouncementUtils announcementUtils;
+    private List<Announcement> arrayAnnouncementSchoolFees = new ArrayList<>();
 
     private AdapterAnnounceTest adapter;
     private List<String> listHeader;
     private HashMap<String,List<String>> listData;
-    private JSONSubject jsonSubject;
 
     @Override
     public void onAttach(Context context) {
@@ -44,10 +42,6 @@ public class FragmentExamination extends Fragment implements JSONSubject.AsyncRe
         if(context instanceof ActivityAnnouncement){
             this.mainActivity = (ActivityAnnouncement)context;
         }
-
-        jsonSubject = new JSONSubject(this.mainActivity);
-        jsonSubject.execute(ConfigURL.urlSubjects);
-        jsonSubject.delegateSubject = this;
     }
 
     @Override
@@ -56,12 +50,33 @@ public class FragmentExamination extends Fragment implements JSONSubject.AsyncRe
         View view = inflater.inflate(R.layout.fragment_exam, container, false);
         intiComponents(view);
 
+//        announcementUtils = new AnnouncementUtils(mainActivity,arrayAnnouncementSchoolFees){
+//            @Override
+//            public void getListSubject(List<Subject> output) {
+//                super.getListSubject(output);
+//                /** Intialize data for ListHeader */
+//                initListHeader(output);
+//                /** */
+//            }
+//        };
+
         prepareListData();
 
         adapter = new AdapterAnnounceTest(mainActivity,listHeader,listData);
         listOfExam.setAdapter(adapter);
         return view;
 
+    }
+
+    private void initListHeader(List<Subject> output) {
+        for(int index = 0; index < output.size(); index++){
+            if(output.get(index).getSubjectName().equals("Classroom Activities") || output.get(index).getSubjectName().equals("Vacation") || output.get(index).getSubjectName().equals("Vacation") || output.get(index).getSubjectName().equals("Assembly")){
+                /** TODO */
+                break;
+            }else{
+                listHeader.add(output.get(index).getSubjectName());
+            }
+        }
     }
 
     protected void prepareListData(){
@@ -107,10 +122,5 @@ public class FragmentExamination extends Fragment implements JSONSubject.AsyncRe
         listOfExam = (ExpandableListView) view.findViewById(R.id.listOfTest);
         listHeader = new ArrayList<String>();
         listData = new HashMap<String, List<String>>();
-    }
-
-    @Override
-    public void getListSubject(List<Subject> output) {
-        Log.d("TAG","SIZE: "+output.size());
     }
 }
