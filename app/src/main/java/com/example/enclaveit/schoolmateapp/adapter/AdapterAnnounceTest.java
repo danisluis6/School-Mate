@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.enclaveit.schoolmateapp.R;
+import com.example.enclaveit.schoolmateapp.bean.Announcement;
 
 import java.util.HashMap;
 import java.util.List;
@@ -23,11 +24,11 @@ public class AdapterAnnounceTest extends BaseExpandableListAdapter{
 
     private Context context;
     private List<String> listHeaders;
-    private HashMap<String,List<String>> listData;
+    private HashMap<String,List<Announcement>> listData;
 
     private String TAG = AdapterAnnounceTest.class.getSimpleName();
 
-    public AdapterAnnounceTest(Context context, List<String> listHeaders, HashMap<String,List<String>> listData){
+    public AdapterAnnounceTest(Context context, List<String> listHeaders, HashMap<String,List<Announcement>> listData){
         this.context = context;
         this.listHeaders = listHeaders;
         this.listData = listData;
@@ -91,7 +92,7 @@ public class AdapterAnnounceTest extends BaseExpandableListAdapter{
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
         ViewHolder holder;
-        final String childText = (String) getChild(i, i1);
+        final Announcement childText = (Announcement) getChild(i, i1);
 
         if (view == null) {
             LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -107,7 +108,7 @@ public class AdapterAnnounceTest extends BaseExpandableListAdapter{
             holder = (ViewHolder)view.getTag();
         }
 
-        holder.title.setText(childText);
+        holder.title.setText(childText.getAnnouncementTitle());
         return view;
     }
 
