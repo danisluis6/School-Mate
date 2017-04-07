@@ -77,7 +77,7 @@ public class ActivityAnnouncement extends AppCompatActivity implements JSONAnnou
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         String[] typeofAnnouncements = getResources().getStringArray(R.array.typeofannouncements);
         adapter.addFragment(new FragmentFee(announcementUtils.getArrayAnnouncement("agreeschoolfee")),typeofAnnouncements[0]);
-        adapter.addFragment(new FragmentExamination(),typeofAnnouncements[1]);
+        adapter.addFragment(new FragmentExamination(announcementUtils.getArrayAnnouncement("agreeschoolexam")),typeofAnnouncements[1]);
         adapter.addFragment(new FragmentConference(),typeofAnnouncements[2]);
         adapter.addFragment(new FragmentActivity(),typeofAnnouncements[3]);
         viewPager.setAdapter(adapter);

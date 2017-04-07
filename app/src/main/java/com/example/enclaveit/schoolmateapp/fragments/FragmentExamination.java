@@ -29,11 +29,15 @@ public class FragmentExamination extends Fragment{
     private ActivityAnnouncement mainActivity;
     private ExpandableListView listOfExam;
     private AnnouncementUtils announcementUtils;
-    private List<Announcement> arrayAnnouncementSchoolFees = new ArrayList<>();
+    private List<Announcement> arrayAnnouncementSchoolExams = new ArrayList<>();
 
     private AdapterAnnounceTest adapter;
     private List<String> listHeader;
     private HashMap<String,List<Announcement>> listData;
+
+    public FragmentExamination(List<Announcement> agreeschoolexam) {
+        this.arrayAnnouncementSchoolExams = agreeschoolexam;
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -50,13 +54,12 @@ public class FragmentExamination extends Fragment{
         View view = inflater.inflate(R.layout.fragment_exam, container, false);
         intiComponents(view);
 
-        announcementUtils = new AnnouncementUtils(mainActivity,arrayAnnouncementSchoolFees){
+        announcementUtils = new AnnouncementUtils(mainActivity,arrayAnnouncementSchoolExams){
             @Override
             public void getListSubject(List<Subject> output) {
                 super.getListSubject(output);
                 /** Intialize data for ListHeader */
                 initListHeader(output);
-                /** */
             }
         };
         return view;
@@ -72,18 +75,14 @@ public class FragmentExamination extends Fragment{
             }
         }
         prepareListData();
-
         adapter = new AdapterAnnounceTest(mainActivity,listHeader,listData);
         listOfExam.setAdapter(adapter);
-
     }
 
     protected void prepareListData(){
         // Adding Art
         List<Announcement> announcementList = new ArrayList<Announcement>();
-        announcementList.add(new Announcement("Inform fees of physical Education uniformSchoolFees","This is obligatory fees, All of the parents should need to know the announcement and set out"));
-        announcementList.add(new Announcement("Inform fees of physical Education uniformSchoolFees","This is obligatory fees, All of the parents should need to know the announcement and set out"));
-        announcementList.add(new Announcement("Inform fees of physical Education uniformSchoolFees","This is obligatory fees, All of the parents should need to know the announcement and set out"));
+        announcementList = arrayAnnouncementSchoolExams;
 
         listData.put(listHeader.get(0), announcementList);
         listData.put(listHeader.get(1), announcementList);

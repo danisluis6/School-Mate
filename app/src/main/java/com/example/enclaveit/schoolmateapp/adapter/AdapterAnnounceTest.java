@@ -2,7 +2,6 @@ package com.example.enclaveit.schoolmateapp.adapter;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,8 +24,6 @@ public class AdapterAnnounceTest extends BaseExpandableListAdapter{
     private Context context;
     private List<String> listHeaders;
     private HashMap<String,List<Announcement>> listData;
-
-    private String TAG = AdapterAnnounceTest.class.getSimpleName();
 
     public AdapterAnnounceTest(Context context, List<String> listHeaders, HashMap<String,List<Announcement>> listData){
         this.context = context;
