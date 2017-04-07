@@ -2,6 +2,7 @@ package com.example.enclaveit.schoolmateapp.adapter;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.enclaveit.schoolmateapp.R;
 import com.example.enclaveit.schoolmateapp.bean.Announcement;
+import com.example.enclaveit.schoolmateapp.libraries.AnnouncementMethods;
 
 import java.util.HashMap;
 import java.util.List;
@@ -24,11 +26,13 @@ public class AdapterAnnounceTest extends BaseExpandableListAdapter{
     private Context context;
     private List<String> listHeaders;
     private HashMap<String,List<Announcement>> listData;
+    private AnnouncementMethods announcementMethods;
 
     public AdapterAnnounceTest(Context context, List<String> listHeaders, HashMap<String,List<Announcement>> listData){
         this.context = context;
         this.listHeaders = listHeaders;
         this.listData = listData;
+        announcementMethods = new AnnouncementMethods();
     }
 
     @Override
@@ -88,7 +92,7 @@ public class AdapterAnnounceTest extends BaseExpandableListAdapter{
 
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
-        ViewHolder holder;
+        final ViewHolder holder;
         final Announcement childText = (Announcement) getChild(i, i1);
 
         if (view == null) {
@@ -96,7 +100,7 @@ public class AdapterAnnounceTest extends BaseExpandableListAdapter{
             view = infalInflater.inflate(R.layout.item_listview_test, null);
 
             holder = new ViewHolder();
-            holder.iconView = (ImageView) view.findViewById(R.id.icon_fee);
+            holder.iconView = (ImageView) view.findViewById(R.id.icon_exam);
             holder.title = (TextView) view.findViewById(R.id.title);
             holder.time = (TextView)view.findViewById(R.id.date);
             holder.imageView = (ImageView)view.findViewById(R.id.imageDetail);
@@ -106,6 +110,7 @@ public class AdapterAnnounceTest extends BaseExpandableListAdapter{
         }
 
         holder.title.setText(childText.getAnnouncementTitle());
+        holder.time.setText(announcementMethods.convertTimeToVN(childText.getAnnouncementDate())+" "+announcementMethods.convertDateToVN(childText.getAnnouncementDate()));
         return view;
     }
 

@@ -8,7 +8,7 @@ import java.util.Date;
  * Created by enclaveit on 07/04/2017.
  */
 
-public abstract class AnnouncementMethods{
+public class AnnouncementMethods{
 
     public String getAnnouncementContent(String temp,int index){
         return temp.split("----")[index];
