@@ -12,7 +12,9 @@ import android.view.Menu;
 import android.widget.Toast;
 
 import com.example.enclaveit.schoolmateapp.asynctasks.JSONAnnouncement;
+import com.example.enclaveit.schoolmateapp.asynctasks.JSONSubject;
 import com.example.enclaveit.schoolmateapp.bean.Announcement;
+import com.example.enclaveit.schoolmateapp.bean.Subject;
 import com.example.enclaveit.schoolmateapp.config.ConfigLog;
 import com.example.enclaveit.schoolmateapp.config.ConfigURL;
 import com.example.enclaveit.schoolmateapp.fragments.FragmentActivity;
@@ -61,7 +63,6 @@ public class ActivityAnnouncement extends AppCompatActivity implements JSONAnnou
         try{
             /** Initialize object announcement */
             announcementUtils = new AnnouncementUtils(ActivityAnnouncement.this,output);
-
             /** Running ViewPager **/
             setupViewPager(viewPager,announcementUtils);
         }catch (Exception ex){

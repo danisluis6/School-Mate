@@ -3,14 +3,17 @@ package com.example.enclaveit.schoolmateapp.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import com.example.enclaveit.schoolmateapp.R;
 import com.example.enclaveit.schoolmateapp.activities.ActivityAnnouncement;
 import com.example.enclaveit.schoolmateapp.adapter.AdapterAnnounceTest;
+import com.example.enclaveit.schoolmateapp.libraries.AnnouncementMethods;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,10 +23,11 @@ import java.util.List;
  * Created by enclaveit on 02/03/2017.
  */
 
-public class FragmentExamination extends Fragment {
+public class FragmentExamination extends Fragment{
 
     private ActivityAnnouncement mainActivity;
-    private ExpandableListView listOfTest;
+    private ExpandableListView listOfExam;
+    private AnnouncementMethods announcementMethods;
 
     private AdapterAnnounceTest adapter;
     private List<String> listHeader;
@@ -42,27 +46,18 @@ public class FragmentExamination extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_exam, container, false);
+        intiComponents(view);
 
-        // Get the Object Widget ListView
-        listOfTest = (ExpandableListView) view.findViewById(R.id.listOfTest);
-
-        // Prepare List Data, Using global variable
         prepareListData();
-        // set Adapter
+
         adapter = new AdapterAnnounceTest(mainActivity,listHeader,listData);
-        listOfTest.setAdapter(adapter);
-
-        // not using event
-
+        listOfExam.setAdapter(adapter);
         return view;
 
     }
 
     protected void prepareListData(){
-        listHeader = new ArrayList<String>();
-        listData = new HashMap<String, List<String>>();
-
-        // Adding child data
+        // Add Header
         listHeader.add("Art");
         listHeader.add("Biology");
         listHeader.add("Chemistry");
@@ -77,7 +72,6 @@ public class FragmentExamination extends Fragment {
         listHeader.add("Physical Education");
         listHeader.add("Physics");
         listHeader.add("Science");
-
 
         // Adding Art
         List<String> top250 = new ArrayList<String>();
@@ -99,5 +93,11 @@ public class FragmentExamination extends Fragment {
         listData.put(listHeader.get(11), top250);
         listData.put(listHeader.get(12), top250);
         listData.put(listHeader.get(13), top250);
+    }
+
+    private void intiComponents(View view) {
+        listOfExam = (ExpandableListView) view.findViewById(R.id.listOfTest);
+        listHeader = new ArrayList<String>();
+        listData = new HashMap<String, List<String>>();
     }
 }
