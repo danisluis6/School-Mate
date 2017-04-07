@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.example.enclaveit.schoolmateapp.R;
 import com.example.enclaveit.schoolmateapp.bean.Announcement;
+import com.example.enclaveit.schoolmateapp.libraries.AnnouncementUsing;
+import com.example.enclaveit.schoolmateapp.libraries.AnnouncementMethods;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -19,7 +21,7 @@ import java.util.Date;
  * Created by enclaveit on 16/12/2016.
  */
 
-public class AlertDialogFee {
+public class AlertDialogFee extends AnnouncementMethods implements AnnouncementUsing {
 
     private static AlertDialog alertDialog;
 
@@ -33,7 +35,6 @@ public class AlertDialogFee {
         View layout = inflater.inflate(R.layout.alert_annouce_fee, (ViewGroup) activity.findViewById(R.id.layout_alert_announce));
         builder.setView(layout);
 
-
         /** Create event for AlertDialog.Builder */
         Button OK = (Button)layout.findViewById(R.id.ok);
         Button Cancle = (Button)layout.findViewById(R.id.cancle);
@@ -44,9 +45,9 @@ public class AlertDialogFee {
         final TextView time = (TextView) layout.findViewById(R.id.timeannounce);
 
         title.setText(announcement.getAnnouncementTitle());
-        description.setText(getAnnouncementContent(announcement.getAnnouncementContent(),0));
-        grade.setText(getAnnouncementContentClass(getAnnouncementContent(announcement.getAnnouncementContent(),2)));
-        time.setText(convertTimeToVN(announcement.getAnnouncementDate())+" "+convertDateToVN(announcement.getAnnouncementDate()));
+        description.setText(new AlertDialogFee().getAnnouncementContent(announcement.getAnnouncementContent(),0));
+        grade.setText(new AlertDialogFee().getAnnouncementContentClass(new AlertDialogFee().getAnnouncementContent(announcement.getAnnouncementContent(),2)));
+        time.setText(new AlertDialogFee().convertTimeToVN(announcement.getAnnouncementDate())+" "+new AlertDialogFee().convertDateToVN(announcement.getAnnouncementDate()));
 
         // Add Event for button
         OK.setOnClickListener(new View.OnClickListener() {
@@ -66,12 +67,15 @@ public class AlertDialogFee {
     }
 
     /** Process content **/
-    public static String getAnnouncementContent(String temp,int index){
+
+    @Override
+    public String getAnnouncementContent(String temp,int index){
         return temp.split("----")[index];
     }
 
     /** Get Class **/
-    public static String getAnnouncementContentClass(String temp){
+    @Override
+    public String getAnnouncementContentClass(String temp){
         if(temp.equals("grade6")){
             return "Grade 6";
         }else if (temp.equals("grade7")){
@@ -85,7 +89,8 @@ public class AlertDialogFee {
     }
 
     /** Process time **/
-    public static String convertTimeToVN(String temp){
+    @Override
+    public String convertTimeToVN(String temp){
         try{
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             Date parsedDate = dateFormat.parse(temp);
@@ -103,7 +108,8 @@ public class AlertDialogFee {
     }
 
     /** Process date */
-    public static String convertDateToVN(String temp){
+    @Override
+    public String convertDateToVN(String temp){
         try{
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             Date parsedDate = dateFormat.parse(temp);

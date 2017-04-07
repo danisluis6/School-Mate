@@ -11,7 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.widget.Toast;
 
-import com.example.enclaveit.schoolmateapp.asynctasks.AsyncTaskAnnouncement;
+import com.example.enclaveit.schoolmateapp.asynctasks.JSONAnnouncement;
 import com.example.enclaveit.schoolmateapp.bean.Announcement;
 import com.example.enclaveit.schoolmateapp.config.ConfigLog;
 import com.example.enclaveit.schoolmateapp.config.ConfigURL;
@@ -23,17 +23,16 @@ import com.example.enclaveit.schoolmateapp.R;
 import com.example.enclaveit.schoolmateapp.libraries.AnnouncementUtils;
 import com.example.enclaveit.schoolmateapp.libraries.ViewPagerAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityAnnouncement extends AppCompatActivity implements AsyncTaskAnnouncement.AsyncResponse{
+public class ActivityAnnouncement extends AppCompatActivity implements JSONAnnouncement.AsyncResponse{
 
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private AnnouncementUtils announcementUtils;
 
-    private AsyncTaskAnnouncement announcementAsyncTask;
+    private JSONAnnouncement jsonAnnouncement;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,19 +50,14 @@ public class ActivityAnnouncement extends AppCompatActivity implements AsyncTask
         this.setTitle("Announcement");
         this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        /** ViewPaper */
         viewPager = (ViewPager) findViewById(R.id.viewpager);
-
-        /** AsyncTask To get Json from website */
-        announcementAsyncTask = new AsyncTaskAnnouncement(ActivityAnnouncement.this);
-        announcementAsyncTask.execute(ConfigURL.urlAnnouncements);
-
-        /** Initialize object for interface AsyncTask  **/
-        announcementAsyncTask.delegate = this;
+        jsonAnnouncement = new JSONAnnouncement(ActivityAnnouncement.this);
+        jsonAnnouncement.execute(ConfigURL.urlAnnouncements);
+        jsonAnnouncement.delegate = this;
     }
 
     @Override
-    public void processFinish(List<Announcement> output) {
+    public void getListAnnouncement(List<Announcement> output) {
         try{
             /** Initialize object announcement */
             announcementUtils = new AnnouncementUtils(ActivityAnnouncement.this,output);
