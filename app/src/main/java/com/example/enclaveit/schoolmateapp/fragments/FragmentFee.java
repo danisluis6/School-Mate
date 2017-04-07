@@ -1,11 +1,8 @@
 package com.example.enclaveit.schoolmateapp.fragments;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,10 +50,8 @@ public class FragmentFee extends Fragment{
         View view = inflater.inflate(R.layout.fragment_fee, container, false);
         listOfFee = (ListView)view.findViewById(R.id.listOfFee);
 
-//        adapterAnnouncement = new AdapterAnnounceFee(mainActivity,arrayAnnouncementSchoolFees);
-//        listOfFee.setAdapter(adapterAnnouncement);
-
-        setFragment(new FragmentFeeHome(arrayAnnouncementSchoolFees,adapterAnnouncement,listOfFee));
+        adapterAnnouncement = new AdapterAnnounceFee(mainActivity,arrayAnnouncementSchoolFees);
+        listOfFee.setAdapter(adapterAnnouncement);
 
         // Set event of ListView
         listOfFee.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -64,15 +59,8 @@ public class FragmentFee extends Fragment{
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Announcement announcement = (Announcement) parent.getItemAtPosition(position);
                 AlertDialogFee.onCreateDialog(mainActivity,announcement).show();
-                setFragment(new FragmentConference());
             }
         });
         return view;
-    }
-
-    protected void setFragment(Fragment fragment) {
-        FragmentTransaction t = mainActivity.getSupportFragmentManager().beginTransaction();
-        t.replace(R.id.fragment_container, fragment);
-        t.commit();
     }
 }
