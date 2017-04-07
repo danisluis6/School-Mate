@@ -3,6 +3,7 @@ package com.example.enclaveit.schoolmateapp.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +30,6 @@ public class FragmentFee extends Fragment{
 
     private AdapterAnnounceFee adapterAnnouncement;
     private ActivityAnnouncement mainActivity;
-    private String TAG = FragmentFee.this.getTag();
 
     public FragmentFee(List<Announcement> agreeschoolfee) {
         this.arrayAnnouncementSchoolFees = agreeschoolfee;
@@ -49,6 +49,8 @@ public class FragmentFee extends Fragment{
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_fee, container, false);
         listOfFee = (ListView)view.findViewById(R.id.listOfFee);
+
+        Log.d("TAG",arrayAnnouncementSchoolFees.get(0).getAnnouncementTitle());
 
         adapterAnnouncement = new AdapterAnnounceFee(mainActivity,arrayAnnouncementSchoolFees);
         listOfFee.setAdapter(adapterAnnouncement);

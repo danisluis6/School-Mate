@@ -31,7 +31,6 @@ import java.util.List;
 
 public class JSONSubject extends AsyncTask<String, Void, String>{
 
-    private ProgressDialog pDialog;
     private ActivityAnnouncement context;
     private HttpGet httpGet ;
     private HttpClient client = new DefaultHttpClient();
@@ -47,7 +46,7 @@ public class JSONSubject extends AsyncTask<String, Void, String>{
         void getListSubject(List<Subject> output);
     }
 
-    public AsyncResponse delegate = null;
+    public AsyncResponse delegateSubject = null;
 
     public JSONSubject(ActivityAnnouncement context){
         this.context = context;
@@ -56,11 +55,6 @@ public class JSONSubject extends AsyncTask<String, Void, String>{
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        // Showing progress dialog
-        pDialog = new ProgressDialog(context);
-        pDialog.setMessage("Please wait...");
-        pDialog.setCancelable(false);
-        pDialog.show();
     }
 
     @Override
@@ -113,7 +107,6 @@ public class JSONSubject extends AsyncTask<String, Void, String>{
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        delegate.getListSubject(listSubjects);
-        pDialog.dismiss();
+        delegateSubject.getListSubject(listSubjects);
     }
 }

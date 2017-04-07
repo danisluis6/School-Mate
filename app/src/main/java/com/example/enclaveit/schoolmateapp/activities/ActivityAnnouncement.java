@@ -12,9 +12,7 @@ import android.view.Menu;
 import android.widget.Toast;
 
 import com.example.enclaveit.schoolmateapp.asynctasks.JSONAnnouncement;
-import com.example.enclaveit.schoolmateapp.asynctasks.JSONSubject;
 import com.example.enclaveit.schoolmateapp.bean.Announcement;
-import com.example.enclaveit.schoolmateapp.bean.Subject;
 import com.example.enclaveit.schoolmateapp.config.ConfigLog;
 import com.example.enclaveit.schoolmateapp.config.ConfigURL;
 import com.example.enclaveit.schoolmateapp.fragments.FragmentActivity;
@@ -33,7 +31,6 @@ public class ActivityAnnouncement extends AppCompatActivity implements JSONAnnou
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private AnnouncementUtils announcementUtils;
-
     private JSONAnnouncement jsonAnnouncement;
 
     @Override
@@ -55,7 +52,7 @@ public class ActivityAnnouncement extends AppCompatActivity implements JSONAnnou
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         jsonAnnouncement = new JSONAnnouncement(ActivityAnnouncement.this);
         jsonAnnouncement.execute(ConfigURL.urlAnnouncements);
-        jsonAnnouncement.delegate = this;
+        jsonAnnouncement.delegateAnnouncement = this;
     }
 
     @Override

@@ -1,18 +1,15 @@
 package com.example.enclaveit.schoolmateapp.libraries;
 
-import com.example.enclaveit.schoolmateapp.asynctasks.JSONSubject;
-import com.example.enclaveit.schoolmateapp.bean.Subject;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by enclaveit on 07/04/2017.
  */
 
-public abstract class AnnouncementMethods implements JSONSubject.AsyncResponse{
+public abstract class AnnouncementMethods{
+
     public String getAnnouncementContent(String temp,int index){
         return temp.split("----")[index];
     }
@@ -67,7 +64,4 @@ public abstract class AnnouncementMethods implements JSONSubject.AsyncResponse{
         return null;
     }
 
-    @Override
-    public void getListSubject(List<Subject> output) {
-    }
 }

@@ -47,7 +47,7 @@ public class JSONAnnouncement extends AsyncTask<String, Void, String>{
         void getListAnnouncement(List<Announcement> output);
     }
 
-    public AsyncResponse delegate = null;
+    public AsyncResponse delegateAnnouncement = null;
 
     public JSONAnnouncement(ActivityAnnouncement context){
         this.context = context;
@@ -121,7 +121,7 @@ public class JSONAnnouncement extends AsyncTask<String, Void, String>{
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        delegate.getListAnnouncement(listAnnouncements);
+        delegateAnnouncement.getListAnnouncement(listAnnouncements);
         pDialog.dismiss();
     }
 }

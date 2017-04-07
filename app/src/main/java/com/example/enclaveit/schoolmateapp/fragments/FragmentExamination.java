@@ -13,6 +13,9 @@ import android.widget.Toast;
 import com.example.enclaveit.schoolmateapp.R;
 import com.example.enclaveit.schoolmateapp.activities.ActivityAnnouncement;
 import com.example.enclaveit.schoolmateapp.adapter.AdapterAnnounceTest;
+import com.example.enclaveit.schoolmateapp.asynctasks.JSONSubject;
+import com.example.enclaveit.schoolmateapp.bean.Subject;
+import com.example.enclaveit.schoolmateapp.config.ConfigURL;
 import com.example.enclaveit.schoolmateapp.libraries.AnnouncementMethods;
 
 import java.util.ArrayList;
@@ -23,7 +26,7 @@ import java.util.List;
  * Created by enclaveit on 02/03/2017.
  */
 
-public class FragmentExamination extends Fragment{
+public class FragmentExamination extends Fragment implements JSONSubject.AsyncResponse{
 
     private ActivityAnnouncement mainActivity;
     private ExpandableListView listOfExam;
@@ -32,6 +35,7 @@ public class FragmentExamination extends Fragment{
     private AdapterAnnounceTest adapter;
     private List<String> listHeader;
     private HashMap<String,List<String>> listData;
+    private JSONSubject jsonSubject;
 
     @Override
     public void onAttach(Context context) {
@@ -40,6 +44,10 @@ public class FragmentExamination extends Fragment{
         if(context instanceof ActivityAnnouncement){
             this.mainActivity = (ActivityAnnouncement)context;
         }
+
+        jsonSubject = new JSONSubject(this.mainActivity);
+        jsonSubject.execute(ConfigURL.urlSubjects);
+        jsonSubject.delegateSubject = this;
     }
 
     @Override
@@ -99,5 +107,10 @@ public class FragmentExamination extends Fragment{
         listOfExam = (ExpandableListView) view.findViewById(R.id.listOfTest);
         listHeader = new ArrayList<String>();
         listData = new HashMap<String, List<String>>();
+    }
+
+    @Override
+    public void getListSubject(List<Subject> output) {
+        Log.d("TAG","SIZE: "+output.size());
     }
 }
