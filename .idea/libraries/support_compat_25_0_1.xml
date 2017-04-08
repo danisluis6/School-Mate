@@ -1,12 +1,9 @@
 <component name="libraryTable">
   <library name="support-compat-25.0.1">
-    <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.android/build-cache/0d1d5aaf8d85cb26361d4e975d77743212b6a020/output/annotations.zip!/" />
-    </ANNOTATIONS>
     <CLASSES>
-      <root url="jar://$USER_HOME$/.android/build-cache/0d1d5aaf8d85cb26361d4e975d77743212b6a020/output/jars/classes.jar!/" />
-      <root url="jar://$USER_HOME$/.android/build-cache/0d1d5aaf8d85cb26361d4e975d77743212b6a020/output/jars/libs/internal_impl-25.0.1.jar!/" />
-      <root url="file://$USER_HOME$/.android/build-cache/0d1d5aaf8d85cb26361d4e975d77743212b6a020/output/res" />
+      <root url="file://$USER_HOME$/.android/build-cache/ac3699539611b2be5b07529e45536610703ca3b6/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/ac3699539611b2be5b07529e45536610703ca3b6/output/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.android/build-cache/ac3699539611b2be5b07529e45536610703ca3b6/output/jars/libs/internal_impl-25.0.1.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
