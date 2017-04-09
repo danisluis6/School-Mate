@@ -48,7 +48,6 @@ public class AdapterHomeList extends RecyclerView.Adapter<AdapterHomeList.Featur
             this.features = features;
             this.context = context;
             view.setOnClickListener(this);
-
             title = (TextView) view.findViewById(R.id.title);
             thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
             overflow = (ImageView) view.findViewById(R.id.overflow);
