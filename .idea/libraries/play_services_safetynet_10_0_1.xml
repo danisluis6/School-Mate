@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="play-services-safetynet-10.0.1">
     <CLASSES>
-      <root url="file://$USER_HOME$/.android/build-cache/3ae488307d3702bac2d90bdad82825a4aa92ca1b/output/res" />
-      <root url="jar://$USER_HOME$/.android/build-cache/3ae488307d3702bac2d90bdad82825a4aa92ca1b/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/0482c29914884d7a4df449dbf917231d5a254639/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/0482c29914884d7a4df449dbf917231d5a254639/output/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

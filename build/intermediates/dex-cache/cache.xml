@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\vuongluis\.android\build-cache\1b360b41966de40dcb0ab02e6a47321bd599f673\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="1108575c7dc7b7f5b378b3290ac90de81a9b8830">
+        <dex dex="C:\Users\vuongluis\Documents\Senior project\School-Mate\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_175f77eca4955d0b975468efc5f4b5f5a95e0a5c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\vuongluis\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.7.0\9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4\glide-3.7.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
+        <dex dex="C:\Users\vuongluis\Documents\Senior project\School-Mate\app\build\intermediates\transforms\dex\debug\folders\1000\10\glide-3.7.0_83952aa643d62fe45b1342e34b9cd54b6de33bf3\classes.dex" />
+    </item>
+
+</items>
