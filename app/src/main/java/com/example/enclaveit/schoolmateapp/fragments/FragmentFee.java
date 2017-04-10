@@ -94,9 +94,10 @@ public class FragmentFee extends Fragment{
     private void switchFragment(Fragment fragment, boolean addToBackStack, int id) {
         FragmentManager fm = mainActivity.getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
+        /** Animcation android */
+        ft.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
         ft.add(id,fragment);
         ft.addToBackStack("");
-        ft.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
         ft.commit();
     }
 }
