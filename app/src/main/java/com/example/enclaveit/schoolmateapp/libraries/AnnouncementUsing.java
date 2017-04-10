@@ -4,7 +4,7 @@ package com.example.enclaveit.schoolmateapp.libraries;
  */
 
 public interface AnnouncementUsing {
-    public String getAnnouncementContent(String temp, int index);
+    public String getPositionContent(String temp, int index);
     public String getAnnouncementContentClass(String temp);
     public String convertTimeToVN(String temp);
     public String convertDateToVN(String temp);

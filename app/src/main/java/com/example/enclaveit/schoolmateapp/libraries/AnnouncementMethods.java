@@ -10,7 +10,7 @@ import java.util.Date;
 
 public class AnnouncementMethods{
 
-    public String getAnnouncementContent(String temp,int index){
+    public String getPositionContent(String temp,int index){
         return temp.split("----")[index];
     }
 

@@ -45,8 +45,8 @@ public class AlertDialogFee extends AnnouncementMethods implements AnnouncementU
         final TextView time = (TextView) layout.findViewById(R.id.timeannounce);
 
         title.setText(announcement.getAnnouncementTitle());
-        description.setText(new AlertDialogFee().getAnnouncementContent(announcement.getAnnouncementContent(),0));
-        grade.setText(new AlertDialogFee().getAnnouncementContentClass(new AlertDialogFee().getAnnouncementContent(announcement.getAnnouncementContent(),2)));
+        description.setText(new AlertDialogFee().getPositionContent(announcement.getAnnouncementContent(),0));
+        grade.setText(new AlertDialogFee().getAnnouncementContentClass(new AlertDialogFee().getPositionContent(announcement.getAnnouncementContent(),2)));
         time.setText(new AlertDialogFee().convertTimeToVN(announcement.getAnnouncementDate())+" "+new AlertDialogFee().convertDateToVN(announcement.getAnnouncementDate()));
 
         // Add Event for button
@@ -69,7 +69,7 @@ public class AlertDialogFee extends AnnouncementMethods implements AnnouncementU
     /** Process content **/
 
     @Override
-    public String getAnnouncementContent(String temp,int index){
+    public String getPositionContent(String temp,int index){
         return temp.split("----")[index];
     }
 

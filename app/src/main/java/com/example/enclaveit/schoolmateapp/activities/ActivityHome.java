@@ -40,6 +40,7 @@ public class ActivityHome extends ActivityBase{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_home);
         context = ActivityHome.this;
 

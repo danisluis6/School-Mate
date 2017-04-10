@@ -19,6 +19,7 @@
     <color name="colorNormal">#A6E8F0</color>
     <color name="colorStatusBar">#0097A7</color>
     <color name="colorStatusBar2">#005048</color>
+    <color name="colorNavigationBarColor">#000000</color>
 
     <!--Color for Subject-->
     <color name="bg_Mathematics">#ffebeb</color>

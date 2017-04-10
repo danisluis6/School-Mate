@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,6 @@ import android.widget.ListView;
 import com.example.enclaveit.schoolmateapp.R;
 import com.example.enclaveit.schoolmateapp.activities.ActivityAnnouncement;
 import com.example.enclaveit.schoolmateapp.adapter.AdapterAnnounceFee;
-import com.example.enclaveit.schoolmateapp.alert.AlertDialogFee;
 import com.example.enclaveit.schoolmateapp.bean.Announcement;
 
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ public class FragmentFee extends Fragment{
     private ActivityAnnouncement mainActivity;
     private FrameLayout details;
 
-    private FragmentFeeHome feefragmentHome;
+    private FragmentFeeDetail feefragmentHome;
 
     public FragmentFee(List<Announcement> agreeschoolfee) {
         this.arrayAnnouncementSchoolFees = agreeschoolfee;
@@ -56,33 +56,31 @@ public class FragmentFee extends Fragment{
 
         details = (FrameLayout)view.findViewById(R.id.fragment_container);
 
-        if(establishFragmentsAndroid()){
-            listOfFee = (ListView)view.findViewById(R.id.listOfFee);
-            adapterAnnouncement = new AdapterAnnounceFee(mainActivity,arrayAnnouncementSchoolFees);
-            listOfFee.setAdapter(adapterAnnouncement);
+        Log.d("TAG","Running....!");
 
-            // Set event of ListView
-            listOfFee.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Announcement announcement = (Announcement) parent.getItemAtPosition(position);
+        listOfFee = (ListView) view.findViewById(R.id.listOfFee);
+        adapterAnnouncement = new AdapterAnnounceFee(mainActivity, arrayAnnouncementSchoolFees);
+        listOfFee.setAdapter(adapterAnnouncement);
+
+        // Set event of ListView
+        listOfFee.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Announcement announcement = (Announcement) parent.getItemAtPosition(position);
 //                    AlertDialogFee.onCreateDialog(mainActivity,announcement).show();
-
-                    /**
-                     *
-                     */
+                if(establishFragmentsAndroid(announcement)) {
                     switchFragment(feefragmentHome, false, R.id.fragment_container);
                 }
-            });
-        }
+            }
+        });
         return view;
     }
 
     /** Initialize fragment */
-    private boolean establishFragmentsAndroid() {
+    private boolean establishFragmentsAndroid(Announcement announcement) {
         boolean valid = true;
         try{
-            feefragmentHome = new FragmentFeeHome();
+            feefragmentHome = new FragmentFeeDetail(announcement);
         }catch (Exception ex){
             valid = false;
             ex.printStackTrace();
@@ -96,7 +94,11 @@ public class FragmentFee extends Fragment{
         FragmentTransaction ft = fm.beginTransaction();
         /** Animcation android */
         ft.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
-        ft.add(id,fragment);
+        if(!ft.isEmpty()){
+            /** NOT TODO */
+        }else{
+            ft.replace(id,fragment);
+        }
         ft.addToBackStack("");
         ft.commit();
     }
