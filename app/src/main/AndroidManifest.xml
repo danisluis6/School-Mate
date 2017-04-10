@@ -36,9 +36,8 @@
         <activity
             android:name=".activities.ActivityHome"
             android:theme="@style/AppTheme.Main" />
-        <activity android:name=".activities.ActivityAnnoucement" />
+        <activity android:name=".activities.ActivityAnnouncement"/>
         <activity android:name=".activities.ActivityProfile" />
-        <activity android:name=".activities.ActivityDemo" />
 
         <!-- Google API key -->
         <meta-data

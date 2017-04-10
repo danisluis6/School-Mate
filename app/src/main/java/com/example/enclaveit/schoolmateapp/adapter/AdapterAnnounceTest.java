@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.enclaveit.schoolmateapp.R;
+import com.example.enclaveit.schoolmateapp.bean.Announcement;
+import com.example.enclaveit.schoolmateapp.libraries.AnnouncementMethods;
 
 import java.util.HashMap;
 import java.util.List;
@@ -23,14 +25,14 @@ public class AdapterAnnounceTest extends BaseExpandableListAdapter{
 
     private Context context;
     private List<String> listHeaders;
-    private HashMap<String,List<String>> listData;
+    private HashMap<String,List<Announcement>> listData;
+    private AnnouncementMethods announcementMethods;
 
-    private String TAG = AdapterAnnounceTest.class.getSimpleName();
-
-    public AdapterAnnounceTest(Context context, List<String> listHeaders, HashMap<String,List<String>> listData){
+    public AdapterAnnounceTest(Context context, List<String> listHeaders, HashMap<String,List<Announcement>> listData){
         this.context = context;
         this.listHeaders = listHeaders;
         this.listData = listData;
+        announcementMethods = new AnnouncementMethods();
     }
 
     @Override
@@ -90,15 +92,15 @@ public class AdapterAnnounceTest extends BaseExpandableListAdapter{
 
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
-        ViewHolder holder;
-        final String childText = (String) getChild(i, i1);
+        final ViewHolder holder;
+        final Announcement childText = (Announcement) getChild(i, i1);
 
         if (view == null) {
             LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = infalInflater.inflate(R.layout.item_listview_test, null);
 
             holder = new ViewHolder();
-            holder.iconView = (ImageView) view.findViewById(R.id.icon_fee);
+            holder.iconView = (ImageView) view.findViewById(R.id.icon_exam);
             holder.title = (TextView) view.findViewById(R.id.title);
             holder.time = (TextView)view.findViewById(R.id.date);
             holder.imageView = (ImageView)view.findViewById(R.id.imageDetail);
@@ -107,7 +109,8 @@ public class AdapterAnnounceTest extends BaseExpandableListAdapter{
             holder = (ViewHolder)view.getTag();
         }
 
-        holder.title.setText(childText);
+        holder.title.setText(childText.getAnnouncementTitle());
+        holder.time.setText(announcementMethods.convertTimeToVN(childText.getAnnouncementDate())+" "+announcementMethods.convertDateToVN(childText.getAnnouncementDate()));
         return view;
     }
 
