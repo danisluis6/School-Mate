@@ -96,6 +96,7 @@ public class FragmentFee extends Fragment{
         FragmentTransaction ft = fm.beginTransaction();
         ft.add(id,fragment);
         ft.addToBackStack("");
+        ft.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
         ft.commit();
     }
 }
