@@ -7,10 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import com.example.enclaveit.schoolmateapp.R;
 import com.example.enclaveit.schoolmateapp.activities.ActivityAnnouncement;
-import com.example.enclaveit.schoolmateapp.adapter.AdapterAnnounceTest;
+import com.example.enclaveit.schoolmateapp.adapter.AdapterAnnounceExam;
 import com.example.enclaveit.schoolmateapp.bean.Announcement;
 import com.example.enclaveit.schoolmateapp.bean.Subject;
 import com.example.enclaveit.schoolmateapp.libraries.AnnouncementUtils;
@@ -30,7 +31,7 @@ public class FragmentExamination extends Fragment{
     private AnnouncementUtils announcementUtils;
     private List<Announcement> arrayAnnouncementSchoolExams = new ArrayList<>();
 
-    private AdapterAnnounceTest adapter;
+    private AdapterAnnounceExam adapter;
     private List<String> listHeader;
     private HashMap<String,List<Announcement>> listData;
 
@@ -74,8 +75,17 @@ public class FragmentExamination extends Fragment{
             }
         }
         prepareListData();
-        adapter = new AdapterAnnounceTest(mainActivity,listHeader,listData);
+        adapter = new AdapterAnnounceExam(mainActivity,listHeader,listData);
         listOfExam.setAdapter(adapter);
+
+        // Listview on child click listener
+        listOfExam.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                Toast.makeText(mainActivity,listHeader.get(groupPosition)+" : "+listData.get(listHeader.get(groupPosition)).get(childPosition).getAnnouncementTitle(),Toast.LENGTH_LONG).show();
+                return false;
+            }
+        });
     }
 
     protected void prepareListData(){
@@ -103,5 +113,12 @@ public class FragmentExamination extends Fragment{
         listOfExam = (ExpandableListView) view.findViewById(R.id.listOfTest);
         listHeader = new ArrayList<String>();
         listData = new HashMap<String, List<Announcement>>();
+
+        listOfExam.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                return false;
+            }
+        });
     }
 }

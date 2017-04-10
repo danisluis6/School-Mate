@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.example.enclaveit.schoolmateapp.R;
 import com.example.enclaveit.schoolmateapp.bean.Announcement;
 import com.example.enclaveit.schoolmateapp.libraries.AnnouncementUsing;
-import com.example.enclaveit.schoolmateapp.libraries.AnnouncementMethods;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -21,7 +20,7 @@ import java.util.Date;
  * Created by enclaveit on 16/12/2016.
  */
 
-public class AlertDialogFee extends AnnouncementMethods implements AnnouncementUsing {
+public class AlertDialogFee implements AnnouncementUsing {
 
     private static AlertDialog alertDialog;
 
