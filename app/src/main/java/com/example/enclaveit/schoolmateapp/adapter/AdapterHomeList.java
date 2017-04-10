@@ -19,6 +19,7 @@ import com.example.enclaveit.schoolmateapp.R;
 import com.example.enclaveit.schoolmateapp.activities.ActivityAnnouncement;
 import com.example.enclaveit.schoolmateapp.activities.ActivityBusTracking;
 import com.example.enclaveit.schoolmateapp.activities.ActivityChat;
+import com.example.enclaveit.schoolmateapp.activities.ActivityProfile;
 import com.example.enclaveit.schoolmateapp.activities.ActivityReport;
 import com.example.enclaveit.schoolmateapp.activities.ActivityTimeTable;
 import com.example.enclaveit.schoolmateapp.bean.Feature;
@@ -66,7 +67,7 @@ public class AdapterHomeList extends RecyclerView.Adapter<AdapterHomeList.Featur
             }else if(feature.getName().equals("Chatting")){
                 context.startActivity(new Intent(context, ActivityChat.class));
             }else if(feature.getName().equals("Home Work")){
-
+                context.startActivity(new Intent(context, ActivityProfile.class));
             }else if(feature.getName().equals("Report")){
                 context.startActivity(new Intent(context, ActivityReport.class));
             }
