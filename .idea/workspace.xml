@@ -37,8 +37,8 @@
       <file leaf-file-name="FragmentFee.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/enclaveit/schoolmateapp/fragments/FragmentFee.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="377">
-              <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="100" selection-end-column="5" />
+            <state relative-caret-position="347">
+              <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="78" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -3269,8 +3269,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/enclaveit/schoolmateapp/fragments/FragmentFee.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="100" selection-end-column="5" />
+        <state relative-caret-position="347">
+          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="78" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
