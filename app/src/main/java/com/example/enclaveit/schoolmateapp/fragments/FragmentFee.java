@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.FrameLayout;
 import android.widget.ListView;
 
 import com.example.enclaveit.schoolmateapp.R;
@@ -32,7 +31,6 @@ public class FragmentFee extends Fragment{
 
     private AdapterAnnounceFee adapterAnnouncement;
     private ActivityAnnouncement mainActivity;
-    private FrameLayout details;
 
     private FragmentFeeDetail feefragmentHome;
 
@@ -54,8 +52,6 @@ public class FragmentFee extends Fragment{
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_fee, container, false);
 
-        details = (FrameLayout)view.findViewById(R.id.fragment_container);
-
         Log.d("TAG","Running....!");
 
         listOfFee = (ListView) view.findViewById(R.id.listOfFee);
@@ -69,7 +65,7 @@ public class FragmentFee extends Fragment{
                 Announcement announcement = (Announcement) parent.getItemAtPosition(position);
 //                    AlertDialogFee.onCreateDialog(mainActivity,announcement).show();
                 if(establishFragmentsAndroid(announcement)) {
-                    switchFragment(feefragmentHome, false, R.id.fragment_container);
+                    switchFragment(feefragmentHome, false, R.id.fragment_fee);
                 }
             }
         });

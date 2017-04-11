@@ -3,11 +3,12 @@ package com.example.enclaveit.schoolmateapp.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
-import android.widget.Toast;
 
 import com.example.enclaveit.schoolmateapp.R;
 import com.example.enclaveit.schoolmateapp.activities.ActivityAnnouncement;
@@ -34,6 +35,9 @@ public class FragmentExamination extends Fragment{
     private AdapterAnnounceExam adapter;
     private List<String> listHeader;
     private HashMap<String,List<Announcement>> listData;
+
+    private FragmentExaminationDetail examfragmentHome;
+
 
     public FragmentExamination(List<Announcement> agreeschoolexam) {
         this.arrayAnnouncementSchoolExams = agreeschoolexam;
@@ -82,7 +86,10 @@ public class FragmentExamination extends Fragment{
         listOfExam.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                Toast.makeText(mainActivity,listHeader.get(groupPosition)+" : "+listData.get(listHeader.get(groupPosition)).get(childPosition).getAnnouncementTitle(),Toast.LENGTH_LONG).show();
+                Announcement announcement = listData.get(listHeader.get(groupPosition)).get(childPosition);
+                if(establishFragmentsAndroid(listHeader.get(groupPosition),announcement)) {
+                    switchFragment(examfragmentHome, false, R.id.fragment_exam);
+                }
                 return false;
             }
         });
@@ -120,5 +127,32 @@ public class FragmentExamination extends Fragment{
                 return false;
             }
         });
+    }
+
+    /** Initialize fragment */
+    private boolean establishFragmentsAndroid(String header, Announcement announcement) {
+        boolean valid = true;
+        try{
+            examfragmentHome = new FragmentExaminationDetail(header,announcement);
+        }catch (Exception ex){
+            valid = false;
+            ex.printStackTrace();
+        }
+        return valid;
+    }
+
+    /** Initialize object FragmentManger to manager fragment */
+    private void switchFragment(Fragment fragment, boolean addToBackStack, int id) {
+        FragmentManager fm = mainActivity.getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        /** Animcation android */
+        ft.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
+        if(!ft.isEmpty()){
+            /** NOT TODO */
+        }else{
+            ft.replace(id,fragment);
+        }
+        ft.addToBackStack("");
+        ft.commit();
     }
 }

@@ -172,10 +172,11 @@ public class AnnouncementUtils implements JSONSubject.AsyncResponse{
             Date parsedDate = dateFormat.parse(temp);
             Calendar cal = Calendar.getInstance();
             cal.setTime(parsedDate);
-            String date = new String(String.valueOf(cal.get(cal.DATE))).length()==2 ? ""+cal.get(cal.HOUR) : "0"+cal.get(cal.HOUR);
-            String month = new String(String.valueOf(cal.get(cal.MONTH))).length()==2 ? ""+cal.get(cal.MONTH) : "0"+cal.get(cal.MONTH);
-            String year = new String(String.valueOf(cal.get(cal.YEAR))).length()==2 ? ""+cal.get(cal.YEAR) : "0"+cal.get(cal.YEAR);
-            return date+"/"+String.valueOf(Integer.parseInt(month)+1)+"/"+year;
+            String date = new String(String.valueOf(cal.get(cal.DATE))).length()==2 ? ""+cal.get(cal.DATE) : "0"+cal.get(cal.DATE);
+            int month = Integer.parseInt(String.valueOf(cal.get(cal.MONTH)))+1;
+            String monthly = String.valueOf(month).length()==2 ? ""+month : "0"+month;
+            String year = new String(String.valueOf(cal.get(cal.YEAR)));
+            return date+"/"+monthly+"/"+year;
         }catch(Exception e){
             //this generic but you can control another types of exception
             e.printStackTrace();
