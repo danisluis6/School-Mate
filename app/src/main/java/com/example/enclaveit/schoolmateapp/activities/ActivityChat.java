@@ -16,8 +16,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.enclaveit.schoolmateapp.R;
-import com.example.enclaveit.schoolmateapp.fragments.FragmentActivity;
-import com.example.enclaveit.schoolmateapp.fragments.FragmentConference;
+import com.example.enclaveit.schoolmateapp.fragments.FragmentCall;
 import com.example.enclaveit.schoolmateapp.libraries.ViewPagerAdapter;
 
 public class ActivityChat extends AppCompatActivity {
@@ -29,13 +28,8 @@ public class ActivityChat extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_chat);
-
-        Window window = this.getWindow();
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorStatusBar2));
-
         initComponents();
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
@@ -55,11 +49,10 @@ public class ActivityChat extends AppCompatActivity {
 
     public void setupViewPager(ViewPager upViewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        String[] typeofAnnouncements = getResources().getStringArray(R.array.typeofannouncements);
-        adapter.addFragment(new FragmentConference(),typeofAnnouncements[2]);
-        adapter.addFragment(new FragmentActivity(),typeofAnnouncements[3]);
-        adapter.addFragment(new FragmentConference(),typeofAnnouncements[2]);
-        adapter.addFragment(new FragmentActivity(),typeofAnnouncements[3]);
+        String[] typeofFeatures = getResources().getStringArray(R.array.typeoffeatures);
+        adapter.addFragment(new FragmentCall(),typeofFeatures[0]);
+        adapter.addFragment(new FragmentCall(),typeofFeatures[1]);
+        adapter.addFragment(new FragmentCall(),typeofFeatures[2]);
         viewPager.setAdapter(adapter);
     }
 

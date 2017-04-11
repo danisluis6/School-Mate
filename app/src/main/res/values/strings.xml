@@ -29,6 +29,12 @@
         <item>Activity</item>
     </string-array>
 
+    <string-array name="typeoffeatures">
+        <item>CALLS</item>
+        <item>CHATS</item>
+        <item>CONTACTS</item>
+    </string-array>
+
     <string name="activity_title_about_us">About Us</string>
     <string name="activity_title_privacy_policy"><b>Privacy Policy</b></string>
     <string name="action_clear_all">Clear All</string>
