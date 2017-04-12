@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
     <ImageView
         android:id="@+id/contactPhoto"
-        android:src="@drawable/anouce_icon_15"
+        android:src="@drawable/chat_icon_avatar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <TextView

@@ -7,4 +7,5 @@ package com.example.enclaveit.schoolmateapp.config;
 public class ConfigURL {
     public static final String urlAnnouncements = "https://lorenceuniversity.000webhostapp.com/";
     public static final String urlSubjects = "https://lorenceuniversity.000webhostapp.com/subject.html";
+    public static final String urlTeachers = "https://lorenceuniversity.000webhostapp.com/teacher.html";
 }

@@ -4,12 +4,11 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.enclaveit.schoolmateapp.R;
-import com.example.enclaveit.schoolmateapp.bean.Announcement;
 import com.example.enclaveit.schoolmateapp.bean.Contact;
 
 import java.util.List;
@@ -19,13 +18,14 @@ import java.util.List;
  * Created by vuongluis on 05/11/2016.
  */
 
-public class AdapterChatCall extends BaseAdapter {
+public class AdapterChatCall extends ArrayAdapter<Contact> {
 
     private List<Contact> listItems;
     private LayoutInflater layoutInflater;
     private Context context;
 
     public AdapterChatCall(Context context, List<Contact> listItems){
+        super(context, 0, listItems);
         this.context = context;
         this.listItems = listItems;
         layoutInflater = LayoutInflater.from(context);
@@ -33,26 +33,16 @@ public class AdapterChatCall extends BaseAdapter {
 
     @Override
     public int getCount() {
-        if (listItems.isEmpty() || listItems == null) {
+        if (listItems.isEmpty()) {
             return 0;
         }
         return listItems.size();
     }
 
     @Override
-    public Object getItem(int i) {
-        return listItems.get(i);
-    }
-
-    @Override
-    public long getItemId(int i) {
-        return i;
-    }
-
-    @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder holder;
-        Contact contact = (Contact) getItem(i);
+        final Contact contact = listItems.get(i);
         if (view == null) {
             view = layoutInflater.inflate(R.layout.item_listview_contact, null);
             holder = new ViewHolder();
@@ -65,8 +55,8 @@ public class AdapterChatCall extends BaseAdapter {
         }
 
         holder.contactName.setText(contact.getContactName());
-//        holder.contactPhone.setText(contact.getContactPhone());
-//        holder.contactPhoto.setImageResource(R.drawable.anouce_icon_15);
+        holder.contactPhone.setText("+84972248187");
+        holder.contactPhoto.setImageResource(R.drawable.anouce_icon_15);
         return view;
     }
 

@@ -7,19 +7,23 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.enclaveit.schoolmateapp.R;
 import com.example.enclaveit.schoolmateapp.activities.ActivityChat;
-import com.example.enclaveit.schoolmateapp.adapter.AdapterChatCall;
+import com.example.enclaveit.schoolmateapp.adapter.SearchableAdapter;
 import com.example.enclaveit.schoolmateapp.bean.Contact;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -31,7 +35,8 @@ public class FragmentCall extends Fragment {
     private ActivityChat mainActivity;
     private List<Contact> contacts;
     private ListView listOfContacts;
-    private AdapterChatCall adapter;
+    private EditText inputSearch;
+    private SearchableAdapter adapter;
 
     @Override
     public void onAttach(Context context) {
@@ -46,16 +51,44 @@ public class FragmentCall extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savesInstanceState){
         View view = inflater.inflate(R.layout.fragment_call, container, false);
         initComponents(view);
+
+        // Soft ListView
+        Collections.sort(contacts, new Comparator<Contact>() {
+            @Override
+            public int compare(Contact o1, Contact o2) {
+                String nameFirst = o1.getContactName();
+                String nameSecond = o2.getContactName();
+                return nameFirst.compareTo(nameSecond);
+            }
+        });
+
         // Show contacts on ListView
         listOfContacts.setAdapter(adapter);
+        inputSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                /** TODO */
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                /** TODO */
+                adapter.getFilter().filter(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
         return view;
     }
 
     private void initComponents(View view) {
         contacts = new ArrayList<>();
         contacts = getAllContacts();
-        adapter = new AdapterChatCall(mainActivity,contacts);
+        adapter = new SearchableAdapter(mainActivity,contacts);
         listOfContacts = (ListView) view.findViewById(R.id.listOfContacts);
+        inputSearch = (EditText) view.findViewById(R.id.inputSearch);
     }
 
 
