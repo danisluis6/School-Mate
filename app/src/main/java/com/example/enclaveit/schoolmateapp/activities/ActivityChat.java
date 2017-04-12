@@ -109,7 +109,6 @@ public class ActivityChat extends AppCompatActivity {
         String[] typeofFeatures = getResources().getStringArray(R.array.typeoffeatures);
         adapter.addFragment(new FragmentCall(),typeofFeatures[0]);
         adapter.addFragment(new FragmentCall(),typeofFeatures[1]);
-        adapter.addFragment(new FragmentCall(),typeofFeatures[2]);
         viewPager.setAdapter(adapter);
     }
 

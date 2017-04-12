@@ -63,7 +63,6 @@ public class FragmentFee extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Announcement announcement = (Announcement) parent.getItemAtPosition(position);
-//                    AlertDialogFee.onCreateDialog(mainActivity,announcement).show();
                 if(establishFragmentsAndroid(announcement)) {
                     switchFragment(feefragmentHome, false, R.id.fragment_fee);
                 }

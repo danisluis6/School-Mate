@@ -71,7 +71,7 @@ public class AdapterChatCall extends BaseAdapter implements Filterable{
         }
 
         holder.contactName.setText(contact.getContactName());
-        holder.contactPhone.setText("+84972248187");
+        holder.contactPhone.setText(contact.getContactPhone());
         holder.contactPhoto.setImageResource(R.drawable.anouce_icon_15);
         return view;
     }

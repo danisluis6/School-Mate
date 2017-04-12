@@ -30,8 +30,7 @@
     </string-array>
 
     <string-array name="typeoffeatures">
-        <item>CALLS</item>
-        <item>SMS</item>
+        <item>CALL/SMS</item>
         <item>CHATING</item>
     </string-array>
 

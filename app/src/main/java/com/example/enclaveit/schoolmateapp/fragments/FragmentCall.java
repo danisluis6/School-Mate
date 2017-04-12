@@ -7,11 +7,14 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -36,6 +39,8 @@ public class FragmentCall extends Fragment {
     private ListView listOfContacts;
     private EditText inputSearch;
     private AdapterChatCall adapter;
+
+    private FragmentCallDetail callfragmentHome;
 
     @Override
     public void onAttach(Context context) {
@@ -79,6 +84,17 @@ public class FragmentCall extends Fragment {
             public void afterTextChanged(Editable s) {
             }
         });
+
+        listOfContacts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Contact contact = (Contact) parent.getItemAtPosition(position);
+                if(establishFragmentsAndroid(contact)) {
+                    switchFragment(callfragmentHome, false, R.id.fragment_fee);
+                }
+            }
+        });
+
         return view;
     }
 
@@ -102,12 +118,46 @@ public class FragmentCall extends Fragment {
         Cursor cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI,null,null,null,null);
         if(cursor.getCount() > 0){
             while(cursor.moveToNext()){
+                String id = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
                 String name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-                String phone = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));
+                String phone = "";
+                Cursor pCur = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null,
+                        ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = ?", new String[]{id}, null);
+                if(pCur.moveToNext()) {
+                    phone = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                }
+                pCur.close();
                 int photo = cursor.getInt(cursor.getColumnIndex(ContactsContract.Contacts.PHOTO_URI));
                 allContacts.add(new Contact(name,phone,photo));
             }
         }
         return allContacts;
+    }
+
+    /** Initialize fragment */
+    private boolean establishFragmentsAndroid(Contact contact) {
+        boolean valid = true;
+        try{
+            callfragmentHome = new FragmentCallDetail(contact);
+        }catch (Exception ex){
+            valid = false;
+            ex.printStackTrace();
+        }
+        return valid;
+    }
+
+    /** Initialize object FragmentManger to manager fragment */
+    private void switchFragment(Fragment fragment, boolean addToBackStack, int id) {
+        FragmentManager fm = mainActivity.getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        /** Animcation android */
+        ft.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
+        if(!ft.isEmpty()){
+            /** NOT TODO */
+        }else{
+            ft.replace(id,fragment);
+        }
+        ft.addToBackStack("");
+        ft.commit();
     }
 }
