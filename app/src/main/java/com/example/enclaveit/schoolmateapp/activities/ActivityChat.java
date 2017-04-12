@@ -1,12 +1,16 @@
 package com.example.enclaveit.schoolmateapp.activities;
 
+import android.Manifest;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -24,30 +28,83 @@ public class ActivityChat extends AppCompatActivity {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private final int MY_PERMISSIONS_REQUEST_CODE = 1;
+
+    /** Check permission for Android with version >= 6.0 **/
+    private boolean checkPermissions() {
+        if (ActivityCompat.checkSelfPermission(this,
+                android.Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode != MY_PERMISSIONS_REQUEST_CODE) {
+            return;
+        }
+        boolean isGranted = true;
+        for (int result : grantResults) {
+            if (result != PackageManager.PERMISSION_GRANTED) {
+                isGranted = false;
+                break;
+            }
+        }
+
+        if (isGranted) {
+            startApplication();
+        }else{
+            Toast.makeText(this, "Permission denied", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void setPermissions() {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.READ_CONTACTS}, MY_PERMISSIONS_REQUEST_CODE);
+    }
+
+    public void startApplication() {
+        initComponents();
+        setupViewPager(viewPager);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Window window = this.getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorStatusBar2));
+
         setContentView(R.layout.activity_chat);
-        initComponents();
+
+        if (checkPermissions()) {
+            startApplication();
+        } else {
+            setPermissions();
+        }
+    }
+
+    private void initComponents() {
+        // Toolbar
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        this.setSupportActionBar(toolbar);
+        toolbar.setTitle("Announcement");
+        this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // ViewPager
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+
+        // TabLayout
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabTextColors(ColorStateList.valueOf(Color.parseColor("#83AEA5")));
         tabLayout.setSelectedTabIndicatorColor(Color.WHITE);
     }
 
-    private void initComponents() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        this.setTitle("Announcement");
-        this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
-    }
-
-    public void setupViewPager(ViewPager upViewPager) {
+    public void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         String[] typeofFeatures = getResources().getStringArray(R.array.typeoffeatures);
         adapter.addFragment(new FragmentCall(),typeofFeatures[0]);
@@ -70,17 +127,4 @@ public class ActivityChat extends AppCompatActivity {
         return true;
     }
 
-    /** Check permission for Android with version >= 6.0 **/
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case 1: {
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                } else {
-                    Toast.makeText(ActivityChat.this, "Permission denied on this device!", Toast.LENGTH_SHORT).show();
-                }
-                return;
-            }
-        }
-    }
 }

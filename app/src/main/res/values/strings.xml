@@ -31,8 +31,8 @@
 
     <string-array name="typeoffeatures">
         <item>CALLS</item>
-        <item>CHATS</item>
-        <item>CONTACTS</item>
+        <item>SMS</item>
+        <item>CHATING</item>
     </string-array>
 
     <string name="activity_title_about_us">About Us</string>

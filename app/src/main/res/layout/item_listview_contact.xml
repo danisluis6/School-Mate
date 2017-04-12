@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_horizontal_margin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/contactPhoto"
+        android:src="@drawable/anouce_icon_15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/contactName"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:text="Lorence(VUONG) N.VAN"
+        android:layout_toRightOf="@id/contactPhoto"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/contactPhone"
+        android:layout_below="@id/contactName"
+        android:layout_toRightOf="@id/contactPhoto"
+        android:text="+84972248187"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
