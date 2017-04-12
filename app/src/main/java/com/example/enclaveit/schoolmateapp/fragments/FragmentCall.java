@@ -9,7 +9,6 @@ import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,7 @@ import android.widget.ListView;
 
 import com.example.enclaveit.schoolmateapp.R;
 import com.example.enclaveit.schoolmateapp.activities.ActivityChat;
-import com.example.enclaveit.schoolmateapp.adapter.SearchableAdapter;
+import com.example.enclaveit.schoolmateapp.adapter.AdapterChatCall;
 import com.example.enclaveit.schoolmateapp.bean.Contact;
 
 import java.util.ArrayList;
@@ -36,7 +35,7 @@ public class FragmentCall extends Fragment {
     private List<Contact> contacts;
     private ListView listOfContacts;
     private EditText inputSearch;
-    private SearchableAdapter adapter;
+    private AdapterChatCall adapter;
 
     @Override
     public void onAttach(Context context) {
@@ -86,7 +85,7 @@ public class FragmentCall extends Fragment {
     private void initComponents(View view) {
         contacts = new ArrayList<>();
         contacts = getAllContacts();
-        adapter = new SearchableAdapter(mainActivity,contacts);
+        adapter = new AdapterChatCall(mainActivity,contacts);
         listOfContacts = (ListView) view.findViewById(R.id.listOfContacts);
         inputSearch = (EditText) view.findViewById(R.id.inputSearch);
     }
