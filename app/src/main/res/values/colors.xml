@@ -65,4 +65,8 @@
 
 
     <color name="actionbar_bg">#0099CC</color>
+    
+    <color name="tab_background_selected">#FFFFFF</color>
+    <color name="tab_background_unselected">#00BCD4</color>
+    
 </resources>

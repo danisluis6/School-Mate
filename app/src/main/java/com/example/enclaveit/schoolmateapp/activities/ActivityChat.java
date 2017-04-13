@@ -1,7 +1,6 @@
 package com.example.enclaveit.schoolmateapp.activities;
 
 import android.Manifest;
-import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -10,7 +9,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -91,8 +89,9 @@ public class ActivityChat extends AppCompatActivity {
         // Toolbar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         this.setSupportActionBar(toolbar);
-        toolbar.setTitle("Announcement");
+        toolbar.setTitle("Chatting");
         this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        this.toolbar.setNavigationIcon(R.drawable.ic_toolbar_back);
 
         // ViewPager
         viewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -100,7 +99,7 @@ public class ActivityChat extends AppCompatActivity {
         // TabLayout
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-        tabLayout.setTabTextColors(ColorStateList.valueOf(Color.parseColor("#83AEA5")));
+        tabLayout.setTabTextColors(ColorStateList.valueOf(Color.parseColor("#FFFFFF")));
         tabLayout.setSelectedTabIndicatorColor(Color.WHITE);
     }
 

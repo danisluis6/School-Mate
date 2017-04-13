@@ -25,6 +25,11 @@
 
         <activity android:name=".activities.ActivityLogin">
             <!-- TODO -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".activities.ActivityBusTracking" />
         <activity android:name=".libraries.DemoWeekView" />
@@ -41,13 +46,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyB2OY39N-Ry1Anogr7VLO4r5LdCgppN5rE" />
 
-        <activity android:name=".activities.ActivityChat">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".activities.ActivityChat"/>
 
         <!-- Firebase Notifications -->
         <service android:name=".service.MyFirebaseInstanceIDService">

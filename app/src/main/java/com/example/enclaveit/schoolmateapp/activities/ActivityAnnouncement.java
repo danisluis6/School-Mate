@@ -1,10 +1,12 @@
 package com.example.enclaveit.schoolmateapp.activities;
 
+import android.Manifest;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -37,7 +39,45 @@ public class ActivityAnnouncement extends AppCompatActivity implements JSONAnnou
     private ViewPager viewPager;
     private AnnouncementUtils announcementUtils;
     private JSONAnnouncement jsonAnnouncement;
+    private final int MY_PERMISSIONS_REQUEST_CODE = 1;
 
+    /** Check permission for Android with version >= 6.0 **/
+    private boolean checkPermissions() {
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode != MY_PERMISSIONS_REQUEST_CODE) {
+            return;
+        }
+        boolean isGranted = true;
+        for (int result : grantResults) {
+            if (result != PackageManager.PERMISSION_GRANTED) {
+                isGranted = false;
+                break;
+            }
+        }
+
+        if (isGranted) {
+            startApplication();
+        }else{
+            Toast.makeText(this, "Permission denied", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void setPermissions() {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.INTERNET}, MY_PERMISSIONS_REQUEST_CODE);
+    }
+
+    public void startApplication() {
+        initComponents();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,10 +88,14 @@ public class ActivityAnnouncement extends AppCompatActivity implements JSONAnnou
         window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorStatusBar));
 
         setContentView(R.layout.activity_annoucement);
-        initComponents();
+        if (checkPermissions()) {
+            startApplication();
+        } else {
+            setPermissions();
+        }
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-        tabLayout.setTabTextColors(ColorStateList.valueOf(Color.parseColor("#A6E8F0")));
+        tabLayout.setTabTextColors(ColorStateList.valueOf(Color.parseColor("#FFFFFF")));
     }
 
     private void initComponents() {
@@ -60,6 +104,7 @@ public class ActivityAnnouncement extends AppCompatActivity implements JSONAnnou
         setSupportActionBar(toolbar);
         this.setTitle("Announcement");
         this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        this.toolbar.setNavigationIcon(R.drawable.ic_toolbar_back);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         jsonAnnouncement = new JSONAnnouncement(ActivityAnnouncement.this);
@@ -107,19 +152,5 @@ public class ActivityAnnouncement extends AppCompatActivity implements JSONAnnou
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
-    }
-
-    /** Check permission for Android with version >= 6.0 **/
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case 1: {
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                } else {
-                    Toast.makeText(ActivityAnnouncement.this, "Permission denied on this device!", Toast.LENGTH_SHORT).show();
-                }
-                return;
-            }
-        }
     }
 }
