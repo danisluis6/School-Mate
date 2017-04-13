@@ -52,8 +52,6 @@ public class FragmentFee extends Fragment{
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_fee, container, false);
 
-        Log.d("TAG","Running....!");
-
         listOfFee = (ListView) view.findViewById(R.id.listOfFee);
         adapterAnnouncement = new AdapterAnnounceFee(mainActivity, arrayAnnouncementSchoolFees);
         listOfFee.setAdapter(adapterAnnouncement);

@@ -86,6 +86,52 @@ public class AdapterAnnounceExam extends BaseExpandableListAdapter{
         }
         viewHolder.title.setTypeface(null, Typeface.BOLD);
         viewHolder.title.setText(headerTitle);
+
+        /** Switch subject with other icon */
+        switch(headerTitle){
+            case "Art":
+                viewHolder.imageView.setImageResource(R.drawable.anouce_icon_math);
+                break;
+            case "Biology":
+                viewHolder.imageView.setImageResource(R.drawable.anouce_icon_biology);
+                break;
+            case "Chemistry":
+                viewHolder.imageView.setImageResource(R.drawable.anouce_icon_chemistry);
+                break;
+            case "Civic Education":
+                viewHolder.imageView.setImageResource(R.drawable.anouce_icon_civic);
+                break;
+            case "English":
+                viewHolder.imageView.setImageResource(R.drawable.anouce_icon_english);
+                break;
+            case "Geography":
+                viewHolder.imageView.setImageResource(R.drawable.anouce_icon_geography);
+                break;
+            case "History":
+                viewHolder.imageView.setImageResource(R.drawable.anouce_icon_math);
+                break;
+            case "Informatics":
+                viewHolder.imageView.setImageResource(R.drawable.anouce_icon_math);
+                break;
+            case "Literature":
+                viewHolder.imageView.setImageResource(R.drawable.anouce_icon_math);
+                break;
+            case "Mathematics":
+                viewHolder.imageView.setImageResource(R.drawable.anouce_icon_math);
+                break;
+            case "Music":
+                viewHolder.imageView.setImageResource(R.drawable.anouce_icon_math);
+                break;
+            case "Physical Education":
+                viewHolder.imageView.setImageResource(R.drawable.anouce_icon_math);
+                break;
+            case "Physics":
+                viewHolder.imageView.setImageResource(R.drawable.anouce_icon_math);
+                break;
+            case "Science":
+                viewHolder.imageView.setImageResource(R.drawable.anouce_icon_math);
+                break;
+        }
         return view;
     }
 

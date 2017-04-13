@@ -11,7 +11,15 @@
         android:clickable="true"
         android:background="#FFFFFF">
         <ImageView
+            android:id="@+id/imageTitleExam"
+            android:layout_marginTop="4dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/announceexam"/>
+        <ImageView
             android:id="@+id/examicon"
+            android:layout_below="@id/imageTitleExam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/anouce_icon_15"/>
@@ -22,6 +30,7 @@
             android:textStyle="bold"
             android:textSize="20dp"
             android:layout_toRightOf="@id/examicon"
+            android:layout_below="@id/imageTitleExam"
             android:paddingLeft="10dp"
             android:textColor="#58A4C4"
             android:layout_width="wrap_content"

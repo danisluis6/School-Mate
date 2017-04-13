@@ -7,8 +7,7 @@
         android:id="@+id/imageTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="16dp"
-        android:background="@drawable/anouce_icon_math"/>
+        android:layout_marginRight="16dp"/>
     <TextView
         android:id="@+id/title"
         android:text="Môn Toán"
