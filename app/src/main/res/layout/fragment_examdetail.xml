@@ -48,6 +48,7 @@
                 android:text="Class 9/1"
                 android:textSize="14dp"
                 android:textColor="#58A4C4"
+                android:paddingRight="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView

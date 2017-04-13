@@ -154,8 +154,8 @@ public class ActivityAnnouncement extends AppCompatActivity implements JSONAnnou
         String[] typeofAnnouncements = getResources().getStringArray(R.array.typeofannouncements);
         adapter.addFragment(new FragmentFee(announcementUtils.getArrayAnnouncement("agreeschoolfee")),typeofAnnouncements[0]);
         adapter.addFragment(new FragmentExamination(announcementUtils.getArrayAnnouncement("agreeschoolexam")),typeofAnnouncements[1]);
-        adapter.addFragment(new FragmentConference(),typeofAnnouncements[2]);
-        adapter.addFragment(new FragmentActivity(),typeofAnnouncements[3]);
+        adapter.addFragment(new FragmentConference(announcementUtils.getArrayAnnouncement("agreeschoolconference")),typeofAnnouncements[2]);
+        adapter.addFragment(new FragmentActivity(announcementUtils.getArrayAnnouncement("agreeschoolactivity")),typeofAnnouncements[3]);
         viewPager.setAdapter(adapter);
     }
 

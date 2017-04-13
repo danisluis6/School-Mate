@@ -61,7 +61,6 @@ public class AdapterAnnounceConfer extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
 
-
         holder.title.setText(announcement.getAnnouncementTitle());
         holder.description.setText(announcement.getAnnouncementDescription());
 
