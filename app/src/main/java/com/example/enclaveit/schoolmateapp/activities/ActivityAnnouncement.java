@@ -96,25 +96,6 @@ public class ActivityAnnouncement extends AppCompatActivity implements JSONAnnou
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabTextColors(ColorStateList.valueOf(Color.parseColor("#A6E8F0")));
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                if(tab.getPosition() == tabLayout.getSelectedTabPosition()){
-                    tabLayout.setTabTextColors(ColorStateList.valueOf(Color.parseColor("#FFFFFF")));
-                }
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-                if(tab.getPosition() != tabLayout.getSelectedTabPosition()){
-                    tabLayout.setTabTextColors(ColorStateList.valueOf(Color.parseColor("#A6E8F0")));
-                }
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-            }
-        });
     }
 
     private void initComponents() {
@@ -155,7 +136,7 @@ public class ActivityAnnouncement extends AppCompatActivity implements JSONAnnou
         /**
          * TODO
          * Process announcement for everyobject in here
-         * Simple; 
+         * Simple;
          */
 
 
