@@ -5,10 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
 import android.widget.TextView;
 
 import com.example.enclaveit.schoolmateapp.R;
 import com.example.enclaveit.schoolmateapp.bean.Announcement;
+import com.example.enclaveit.schoolmateapp.bean.Contact;
 
 import java.util.List;
 

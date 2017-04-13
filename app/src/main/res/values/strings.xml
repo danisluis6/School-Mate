@@ -21,6 +21,19 @@
         <item>Settings</item>
     </string-array>
 
+    <!-- Array for type of announcements -->
+    <string-array name="typeofannouncements">
+        <item>School Fees</item>
+        <item>Examination</item>
+        <item>Conference</item>
+        <item>Activity</item>
+    </string-array>
+
+    <string-array name="typeoffeatures">
+        <item>CALL/SMS</item>
+        <item>CHATING</item>
+    </string-array>
+
     <string name="activity_title_about_us">About Us</string>
     <string name="activity_title_privacy_policy"><b>Privacy Policy</b></string>
     <string name="action_clear_all">Clear All</string>

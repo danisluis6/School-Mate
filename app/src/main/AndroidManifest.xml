@@ -10,6 +10,7 @@
     <!-- Used to get Location -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
 
     <application
         android:name="android.support.multidex.MultiDexApplication"
@@ -23,11 +24,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".activities.ActivityLogin">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!-- TODO -->
         </activity>
         <activity android:name=".activities.ActivityBusTracking" />
         <activity android:name=".libraries.DemoWeekView" />
@@ -36,16 +33,21 @@
         <activity
             android:name=".activities.ActivityHome"
             android:theme="@style/AppTheme.Main" />
-        <activity android:name=".activities.ActivityAnnoucement" />
+        <activity android:name=".activities.ActivityAnnouncement"/>
         <activity android:name=".activities.ActivityProfile" />
-        <activity android:name=".activities.ActivityDemo" />
 
         <!-- Google API key -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyB2OY39N-Ry1Anogr7VLO4r5LdCgppN5rE" />
 
-        <activity android:name=".activities.ActivityChat"></activity>
+        <activity android:name=".activities.ActivityChat">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <!-- Firebase Notifications -->
         <service android:name=".service.MyFirebaseInstanceIDService">

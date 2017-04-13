@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.enclaveit.schoolmateapp.R;
-import com.example.enclaveit.schoolmateapp.activities.ActivityAnnoucement;
+import com.example.enclaveit.schoolmateapp.activities.ActivityAnnouncement;
 import com.example.enclaveit.schoolmateapp.activities.ActivityHome;
 
 /**
@@ -24,7 +24,7 @@ public class FragmentHome extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        if(context instanceof ActivityAnnoucement){
+        if(context instanceof ActivityAnnouncement){
             this.mainActivity = (ActivityHome)context;
         }
     }
