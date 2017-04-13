@@ -53,9 +53,9 @@ public class FragmentActivityDetail extends Fragment{
     }
 
     private void initComponents(View view) {
-        actTitle = (TextView)view.findViewById(R.id.conftitle);
-        actContent = (TextView)view.findViewById(R.id.confcontent);
-        actDate = (TextView)view.findViewById(R.id.confdate);
+        actTitle = (TextView)view.findViewById(R.id.acttitle);
+        actContent = (TextView)view.findViewById(R.id.actcontent);
+        actDate = (TextView)view.findViewById(R.id.actdate);
         announcementUtils = new AnnouncementUtils();
     }
 }
