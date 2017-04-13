@@ -2,36 +2,36 @@ package com.example.enclaveit.schoolmateapp.activities;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.enclaveit.schoolmateapp.R;
-import com.example.enclaveit.schoolmateapp.fragments.FragmentCall;
-import com.example.enclaveit.schoolmateapp.libraries.ViewPagerAdapter;
+import com.example.enclaveit.schoolmateapp.asynctasks.JSONTeacher;
+import com.example.enclaveit.schoolmateapp.bean.Teacher;
+import com.example.enclaveit.schoolmateapp.config.ConfigLog;
+import com.example.enclaveit.schoolmateapp.config.ConfigURL;
 
-public class ActivityChat extends AppCompatActivity {
+import java.util.List;
+
+public class ActivityChat extends AppCompatActivity implements JSONTeacher.AsyncResponse{
 
     private Toolbar toolbar;
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
     private final int MY_PERMISSIONS_REQUEST_CODE = 1;
+    private JSONTeacher jsonTeacher;
 
     /** Check permission for Android with version >= 6.0 **/
     private boolean checkPermissions() {
         if (ActivityCompat.checkSelfPermission(this,
-                android.Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+                Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED) {
             return false;
         }
         return true;
@@ -59,12 +59,11 @@ public class ActivityChat extends AppCompatActivity {
 
     private void setPermissions() {
         ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.READ_CONTACTS}, MY_PERMISSIONS_REQUEST_CODE);
+                new String[]{Manifest.permission.INTERNET}, MY_PERMISSIONS_REQUEST_CODE);
     }
 
     public void startApplication() {
         initComponents();
-        setupViewPager(viewPager);
     }
 
     @Override
@@ -87,29 +86,25 @@ public class ActivityChat extends AppCompatActivity {
 
     private void initComponents() {
         // Toolbar
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbarChat);
         this.setSupportActionBar(toolbar);
         toolbar.setTitle("Chatting");
         this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         this.toolbar.setNavigationIcon(R.drawable.ic_toolbar_back);
 
-        // ViewPager
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
 
-        // TabLayout
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
-        tabLayout.setTabTextColors(ColorStateList.valueOf(Color.parseColor("#FFFFFF")));
-        tabLayout.setSelectedTabIndicatorColor(Color.WHITE);
+        jsonTeacher = new JSONTeacher(ActivityChat.this);
+        jsonTeacher.execute(ConfigURL.urlTeachers);
+        jsonTeacher.delegateTeacher = this;
     }
 
-    public void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        String[] typeofFeatures = getResources().getStringArray(R.array.typeoffeatures);
-        adapter.addFragment(new FragmentCall(),typeofFeatures[0]);
-        adapter.addFragment(new FragmentCall(),typeofFeatures[1]);
-        adapter.addFragment(new FragmentCall(),typeofFeatures[2]);
-        viewPager.setAdapter(adapter);
+    @Override
+    public void getListTeacher(List<Teacher> output) {
+        try{
+            Log.d("TAG","N = "+output.size());
+        }catch (Exception ex){
+            Log.d("ActivityChatting", ConfigLog.ErrorGetRootListAnnouncement);
+        }
     }
 
     /** Load menu of Toolbar **/
@@ -125,5 +120,4 @@ public class ActivityChat extends AppCompatActivity {
         onBackPressed();
         return true;
     }
-
 }

@@ -91,7 +91,6 @@ public class FragmentCall extends Fragment {
         inputSearch = (EditText) view.findViewById(R.id.inputSearch);
     }
 
-
     @Override
     public void startActivityForResult(Intent intent, int requestCode) {
         super.startActivityForResult(intent, requestCode);
