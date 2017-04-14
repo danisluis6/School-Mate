@@ -115,6 +115,11 @@ public class ActivityAnnouncement extends AppCompatActivity implements JSONAnnou
     @Override
     public void getListAnnouncement(List<Announcement> output) {
         try{
+
+            Log.d("TAG","N = "+output.size());
+
+
+
             /** Initialize object announcement */
             announcementUtils = new AnnouncementUtils(ActivityAnnouncement.this,output);
             /** Running ViewPager **/

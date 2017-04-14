@@ -12,8 +12,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.enclaveit.schoolmateapp.R;
+import com.example.enclaveit.schoolmateapp.activities.ActivityChat;
 import com.example.enclaveit.schoolmateapp.bean.Announcement;
 import com.example.enclaveit.schoolmateapp.bean.Contact;
+import com.example.enclaveit.schoolmateapp.bean.Teacher;
 
 import java.util.ArrayList;
 import java.util.List;

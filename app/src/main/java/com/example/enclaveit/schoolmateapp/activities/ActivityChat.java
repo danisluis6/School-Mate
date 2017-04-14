@@ -8,18 +8,25 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.enclaveit.schoolmateapp.R;
+import com.example.enclaveit.schoolmateapp.adapter.AdapterChatting;
 import com.example.enclaveit.schoolmateapp.asynctasks.JSONTeacher;
 import com.example.enclaveit.schoolmateapp.bean.Teacher;
 import com.example.enclaveit.schoolmateapp.config.ConfigLog;
 import com.example.enclaveit.schoolmateapp.config.ConfigURL;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class ActivityChat extends AppCompatActivity implements JSONTeacher.AsyncResponse{
@@ -27,6 +34,9 @@ public class ActivityChat extends AppCompatActivity implements JSONTeacher.Async
     private Toolbar toolbar;
     private final int MY_PERMISSIONS_REQUEST_CODE = 1;
     private JSONTeacher jsonTeacher;
+    private AdapterChatting adapter;
+    private ListView listOfContacts;
+    private EditText inputSearch;
 
     /** Check permission for Android with version >= 6.0 **/
     private boolean checkPermissions() {
@@ -91,7 +101,8 @@ public class ActivityChat extends AppCompatActivity implements JSONTeacher.Async
         toolbar.setTitle("Chatting");
         this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         this.toolbar.setNavigationIcon(R.drawable.ic_toolbar_back);
-
+        listOfContacts = (ListView)this.findViewById(R.id.listOfContacts);
+        inputSearch = (EditText)this.findViewById(R.id.inputSearch);
 
         jsonTeacher = new JSONTeacher(ActivityChat.this);
         jsonTeacher.execute(ConfigURL.urlTeachers);
@@ -102,6 +113,38 @@ public class ActivityChat extends AppCompatActivity implements JSONTeacher.Async
     public void getListTeacher(List<Teacher> output) {
         try{
             Log.d("TAG","N = "+output.size());
+            // Soft ListView
+            Collections.sort(output, new Comparator<Teacher>() {
+                @Override
+                public int compare(Teacher o1, Teacher o2) {
+                    String nameFirst = o1.getTeacherName();
+                    String nameSecond = o2.getTeacherName();
+                    return nameFirst.compareTo(nameSecond);
+                }
+            });
+
+            // Set data for AdapterChatting
+            adapter = new AdapterChatting(this,output);
+
+            // Show contacts on ListView
+            listOfContacts.setAdapter(adapter);
+            inputSearch.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    /** TODO */
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    /** TODO */
+                    adapter.getFilter().filter(s.toString());
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                }
+            });
+
         }catch (Exception ex){
             Log.d("ActivityChatting", ConfigLog.ErrorGetRootListAnnouncement);
         }

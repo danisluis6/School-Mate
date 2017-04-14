@@ -1,5 +1,6 @@
 package com.example.enclaveit.schoolmateapp.asynctasks;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -31,6 +32,7 @@ import java.util.List;
 
 public class JSONTeacher extends AsyncTask<String, Void, String>{
 
+    private ProgressDialog pDialog;
     private ActivityChat context;
     private HttpGet httpGet ;
     private HttpClient client = new DefaultHttpClient();
@@ -55,6 +57,10 @@ public class JSONTeacher extends AsyncTask<String, Void, String>{
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        pDialog = new ProgressDialog(context);
+        pDialog.setMessage("Please wait...");
+        pDialog.setCancelable(false);
+        pDialog.show();
     }
 
     @Override
@@ -119,5 +125,6 @@ public class JSONTeacher extends AsyncTask<String, Void, String>{
             e.printStackTrace();
         }
         delegateTeacher.getListTeacher(listTeachers);
+        pDialog.dismiss();
     }
 }
