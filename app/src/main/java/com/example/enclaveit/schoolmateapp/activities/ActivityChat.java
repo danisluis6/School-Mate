@@ -4,6 +4,9 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,8 +15,10 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -24,6 +29,8 @@ import com.example.enclaveit.schoolmateapp.asynctasks.JSONTeacher;
 import com.example.enclaveit.schoolmateapp.bean.Teacher;
 import com.example.enclaveit.schoolmateapp.config.ConfigLog;
 import com.example.enclaveit.schoolmateapp.config.ConfigURL;
+
+import com.example.enclaveit.schoolmateapp.fragments.FragmentChatDetail;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -37,6 +44,8 @@ public class ActivityChat extends AppCompatActivity implements JSONTeacher.Async
     private AdapterChatting adapter;
     private ListView listOfContacts;
     private EditText inputSearch;
+
+    private FragmentChatDetail teacherfragmentHome;
 
     /** Check permission for Android with version >= 6.0 **/
     private boolean checkPermissions() {
@@ -145,6 +154,17 @@ public class ActivityChat extends AppCompatActivity implements JSONTeacher.Async
                 }
             });
 
+            // Catch event of Listview
+            listOfContacts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Teacher teacher = (Teacher) parent.getItemAtPosition(position);
+                    if(establishFragmentsAndroid(teacher)) {
+                        switchFragment(teacherfragmentHome, false, R.id.fragment_contact);
+                    }
+                }
+            });
+
         }catch (Exception ex){
             Log.d("ActivityChatting", ConfigLog.ErrorGetRootListAnnouncement);
         }
@@ -163,4 +183,32 @@ public class ActivityChat extends AppCompatActivity implements JSONTeacher.Async
         onBackPressed();
         return true;
     }
+
+    /** Initialize fragment */
+    private boolean establishFragmentsAndroid(Teacher teacher) {
+        boolean valid = true;
+        try{
+            teacherfragmentHome = new FragmentChatDetail(teacher);
+        }catch (Exception ex){
+            valid = false;
+            ex.printStackTrace();
+        }
+        return valid;
+    }
+
+    /** Initialize object FragmentManger to manager fragment */
+    private void switchFragment(Fragment fragment, boolean addToBackStack, int id) {
+        FragmentManager fm = this.getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        /** Animcation android */
+        ft.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
+        if(!ft.isEmpty()){
+            /** NOT TODO */
+        }else{
+            ft.replace(id,fragment);
+        }
+        ft.addToBackStack("");
+        ft.commit();
+    }
+
 }

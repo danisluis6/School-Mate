@@ -69,7 +69,13 @@ public class AdapterChatting extends BaseAdapter implements Filterable{
 
         holder.chatName.setText(teacher.getTeacherName());
         holder.chatPhone.setText("Phone: "+teacher.getTeacherPhone());
-        holder.chatEmail.setText("Email: "+teacher.getTeacherEmail());
+        String temp = "Email: "+teacher.getTeacherEmail();
+        if(temp.length()>10){
+            holder.chatEmail.setText(temp.substring(0,10)+"...");
+        }else{
+            holder.chatEmail.setText(temp);
+        }
+
         return view;
     }
 
