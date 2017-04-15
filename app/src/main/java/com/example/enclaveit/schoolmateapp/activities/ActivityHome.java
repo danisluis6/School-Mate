@@ -19,7 +19,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.enclaveit.schoolmateapp.R;
-import com.example.enclaveit.schoolmateapp.adapter.AdapterHomeList;
+import com.example.enclaveit.schoolmateapp.adapter.AdapterHome;
 import com.example.enclaveit.schoolmateapp.bean.Feature;
 import com.example.enclaveit.schoolmateapp.config.Config;
 import com.example.enclaveit.schoolmateapp.libraries.ActivityBase;
@@ -31,7 +31,7 @@ import java.util.List;
 public class ActivityHome extends ActivityBase{
 
     private RecyclerView recyclerView;
-    private AdapterHomeList adapter;
+    private AdapterHome adapter;
     private List<Feature> featureList;
     private Context context;
 
@@ -48,7 +48,7 @@ public class ActivityHome extends ActivityBase{
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
         featureList = new ArrayList<>();
-        adapter = new AdapterHomeList(this, featureList);
+        adapter = new AdapterHome(this, featureList);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
