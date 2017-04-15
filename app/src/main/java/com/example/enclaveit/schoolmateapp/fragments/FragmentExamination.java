@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,8 @@ import com.example.enclaveit.schoolmateapp.bean.Subject;
 import com.example.enclaveit.schoolmateapp.libraries.AnnouncementUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -98,22 +101,65 @@ public class FragmentExamination extends Fragment{
     protected void prepareListData(){
         // Adding Art
         List<Announcement> announcementList = new ArrayList<Announcement>();
+        Collections.sort(arrayAnnouncementSchoolExams, new Comparator<Announcement>() {
+            @Override
+            public int compare(Announcement o1, Announcement o2) {
+                String nameFirst = announcementUtils.getPositionContent(o1.getAnnouncementContent(),4);
+                String nameSecond = announcementUtils.getPositionContent(o2.getAnnouncementContent(),4);
+                return nameFirst.compareTo(nameSecond);
+            }
+        });
         announcementList = arrayAnnouncementSchoolExams;
 
-        listData.put(listHeader.get(0), announcementList);
-        listData.put(listHeader.get(1), announcementList);
-        listData.put(listHeader.get(2), announcementList);
-        listData.put(listHeader.get(3), announcementList);
-        listData.put(listHeader.get(4), announcementList);
-        listData.put(listHeader.get(5), announcementList);
-        listData.put(listHeader.get(6), announcementList);
-        listData.put(listHeader.get(7), announcementList);
-        listData.put(listHeader.get(8), announcementList);
-        listData.put(listHeader.get(9), announcementList);
-        listData.put(listHeader.get(10), announcementList);
-        listData.put(listHeader.get(11), announcementList);
-        listData.put(listHeader.get(12), announcementList);
-        listData.put(listHeader.get(13), announcementList);
+        /**
+         * Distributing announcement with subject
+         */
+        for(int index  = 0; index < announcementList.size(); index++){
+            switch(announcementUtils.getPositionContent(announcementList.get(index).getAnnouncementContent(),3)){
+                case "Art":
+                    listData.put(listHeader.get(0), announcementUtils.getListTest(announcementList,"Art"));
+                    break;
+                case "Biology":
+                    listData.put(listHeader.get(1), announcementUtils.getListTest(announcementList,"Biology"));
+                    break;
+                case "Chemistry":
+                    listData.put(listHeader.get(2), announcementUtils.getListTest(announcementList,"Chemistry"));
+                    break;
+                case "Civic Education":
+                    listData.put(listHeader.get(3), announcementUtils.getListTest(announcementList,"Civic Education"));
+                    break;
+                case "English":
+                    listData.put(listHeader.get(4), announcementUtils.getListTest(announcementList,"English"));
+                    break;
+                case "Geography":
+                    listData.put(listHeader.get(5), announcementUtils.getListTest(announcementList,"Geography"));
+                    break;
+                case "History":
+                    listData.put(listHeader.get(6), announcementUtils.getListTest(announcementList,"History"));
+                    break;
+                case "Informatics":
+                    listData.put(listHeader.get(7), announcementUtils.getListTest(announcementList,"Informatics"));
+                    break;
+                case "Literature":
+                    listData.put(listHeader.get(8), announcementUtils.getListTest(announcementList,"Literature"));
+                    break;
+                case "Mathematics":
+                    listData.put(listHeader.get(9), announcementUtils.getListTest(announcementList,"Mathematics"));
+                    break;
+                case "Music":
+                    listData.put(listHeader.get(10), announcementUtils.getListTest(announcementList,"Music"));
+                    break;
+                case "Physical Education":
+                    listData.put(listHeader.get(11), announcementUtils.getListTest(announcementList,"Physical Education"));
+                    break;
+                case "Physics":
+                    listData.put(listHeader.get(12), announcementUtils.getListTest(announcementList,"Physics"));
+                    break;
+                case "Science":
+                    listData.put(listHeader.get(13), announcementUtils.getListTest(announcementList,"Science"));
+                    break;
+            }
+        }
     }
 
     private void intiComponents(View view) {

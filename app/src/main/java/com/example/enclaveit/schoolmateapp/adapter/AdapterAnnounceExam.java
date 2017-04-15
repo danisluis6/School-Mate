@@ -2,6 +2,7 @@ package com.example.enclaveit.schoolmateapp.adapter;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,13 +26,13 @@ public class AdapterAnnounceExam extends BaseExpandableListAdapter{
     private Context context;
     private List<String> listHeaders;
     private HashMap<String,List<Announcement>> listData;
-    private AnnouncementUtils announcementMethods;
+    private AnnouncementUtils announcementUtils;
 
     public AdapterAnnounceExam(Context context, List<String> listHeaders, HashMap<String,List<Announcement>> listData){
         this.context = context;
         this.listHeaders = listHeaders;
         this.listData = listData;
-        announcementMethods = new AnnouncementUtils();
+        announcementUtils = new AnnouncementUtils();
     }
 
     @Override
@@ -90,7 +91,7 @@ public class AdapterAnnounceExam extends BaseExpandableListAdapter{
         /** Switch subject with other icon */
         switch(headerTitle){
             case "Art":
-                viewHolder.imageView.setImageResource(R.drawable.anouce_icon_math);
+                viewHolder.imageView.setImageResource(R.drawable.anouce_icon_art);
                 break;
             case "Biology":
                 viewHolder.imageView.setImageResource(R.drawable.anouce_icon_biology);
@@ -108,28 +109,28 @@ public class AdapterAnnounceExam extends BaseExpandableListAdapter{
                 viewHolder.imageView.setImageResource(R.drawable.anouce_icon_geography);
                 break;
             case "History":
-                viewHolder.imageView.setImageResource(R.drawable.anouce_icon_math);
+                viewHolder.imageView.setImageResource(R.drawable.anouce_icon_history);
                 break;
             case "Informatics":
-                viewHolder.imageView.setImageResource(R.drawable.anouce_icon_math);
+                viewHolder.imageView.setImageResource(R.drawable.anouce_icon_infor);
                 break;
             case "Literature":
-                viewHolder.imageView.setImageResource(R.drawable.anouce_icon_math);
+                viewHolder.imageView.setImageResource(R.drawable.anouce_icon_lit);
                 break;
             case "Mathematics":
                 viewHolder.imageView.setImageResource(R.drawable.anouce_icon_math);
                 break;
             case "Music":
-                viewHolder.imageView.setImageResource(R.drawable.anouce_icon_math);
+                viewHolder.imageView.setImageResource(R.drawable.anouce_icon_music);
                 break;
             case "Physical Education":
-                viewHolder.imageView.setImageResource(R.drawable.anouce_icon_math);
+                viewHolder.imageView.setImageResource(R.drawable.anouce_icon_physicaledu);
                 break;
             case "Physics":
-                viewHolder.imageView.setImageResource(R.drawable.anouce_icon_math);
+                viewHolder.imageView.setImageResource(R.drawable.anouce_icon_physic);
                 break;
             case "Science":
-                viewHolder.imageView.setImageResource(R.drawable.anouce_icon_math);
+                viewHolder.imageView.setImageResource(R.drawable.anouce_icon_science);
                 break;
         }
         return view;
@@ -155,8 +156,8 @@ public class AdapterAnnounceExam extends BaseExpandableListAdapter{
         }
 
         holder.title.setText(childText.getAnnouncementTitle());
-        holder.iconView.setImageResource(R.drawable.anouce_icon_15);
-        holder.time.setText(announcementMethods.convertTimeToVN(childText.getAnnouncementDate())+" "+announcementMethods.convertDateToVN(childText.getAnnouncementDate()));
+        holder.iconView.setImageResource(announcementUtils.getTypeOfIconExam(announcementUtils.getPositionContent(childText.getAnnouncementContent(),4)));
+        holder.time.setText(announcementUtils.convertTimeToVN(childText.getAnnouncementDate())+" "+announcementUtils.convertDateToVN(childText.getAnnouncementDate()));
         return view;
     }
 

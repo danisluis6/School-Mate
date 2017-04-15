@@ -95,7 +95,7 @@ public class ActivityAnnouncement extends AppCompatActivity implements JSONAnnou
         }
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-        tabLayout.setTabTextColors(ColorStateList.valueOf(Color.parseColor("#A6E8F0")));
+        tabLayout.setTabTextColors(ColorStateList.valueOf(Color.parseColor("#FFFFFF")));
     }
 
     private void initComponents() {
@@ -117,9 +117,6 @@ public class ActivityAnnouncement extends AppCompatActivity implements JSONAnnou
         try{
 
             Log.d("TAG","N = "+output.size());
-
-
-
             /** Initialize object announcement */
             announcementUtils = new AnnouncementUtils(ActivityAnnouncement.this,output);
             /** Running ViewPager **/

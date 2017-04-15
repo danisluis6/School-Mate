@@ -217,4 +217,38 @@ public class AnnouncementUtils implements JSONSubject.AsyncResponse{
         return result;
     }
 
+    public List<Announcement> getListTest(List<Announcement> announcementList, String equal) {
+        List<Announcement> arrayTest = new ArrayList<>();
+        for(int index = 0; index < announcementList.size(); index++){
+            String temp = getPositionContent(announcementList.get(index).getAnnouncementContent(),3);
+            if(temp.equals(equal)) {
+                arrayTest.add(announcementList.get(index));
+            }else if(temp.equals(equal)) {
+                arrayTest.add(announcementList.get(index));
+            }else if(temp.equals(equal)) {
+                arrayTest.add(announcementList.get(index));
+            }else if(temp.equals(equal)) {
+                arrayTest.add(announcementList.get(index));
+            }else if(temp.equals(equal)) {
+                arrayTest.add(announcementList.get(index));
+            }else if(temp.equals(equal)) {
+                arrayTest.add(announcementList.get(index));
+            }else if(temp.equals(equal)) {
+                arrayTest.add(announcementList.get(index));
+            }else if(temp.equals(equal)) {
+                arrayTest.add(announcementList.get(index));
+            }else if(temp.equals(equal)) {
+                arrayTest.add(announcementList.get(index));
+            }else if(temp.equals(equal)) {
+                arrayTest.add(announcementList.get(index));
+            }else if(temp.equals(equal)) {
+                arrayTest.add(announcementList.get(index));
+            }else if(temp.equals(equal)) {
+                arrayTest.add(announcementList.get(index));
+            }else if(temp.equals(equal)) {
+                arrayTest.add(announcementList.get(index));
+            }
+        }
+        return arrayTest;
+    }
 }
